@@ -1,0 +1,50 @@
+<mat-toolbar class="app-toolbar">
+  <mat-toolbar-row class="first-row">
+    <div class="logo" (click)="onNavigationClick('MAIN')">
+      <mat-icon class="logo-icon" svgIcon="logo"></mat-icon>
+      <mat-icon class="logo-text" svgIcon="logo-text"></mat-icon>
+    </div>
+    <ng-container *ngIf="!isAdmin">
+      <div class="navigation">
+        <button 
+          mat-button
+          class="navigation-item"
+          [ngClass]="{'active-item': (activeBookSection$ | async) === 'JAVASCRIPT'}"
+          (click)="onNavigationClick('JAVASCRIPT')">
+          {{ 'JAVASCRIPT' | translate }}
+        </button>
+        <button 
+          mat-button
+          class="navigation-item"
+          [ngClass]="{'active-item': (activeBookSection$ | async) === 'TYPESCRIPT'}"
+          (click)="onNavigationClick('TYPESCRIPT')">
+          {{ 'TYPESCRIPT' | translate }}
+        </button>
+      </div>
+      <div class="actions">
+        <!-- <mat-form-field class="actions-search" appearance="fill">
+          <mat-icon class="actions-search-icon">search</mat-icon>
+          <input 
+            type="text"
+            placeholder="{{ 'TOOLBAR_SEARCH_PLACEHOLDER' | translate }}"
+            matInput
+            [formControl]="searchControl"
+            [matAutocomplete]="auto"
+            name="wisSearch">
+          <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+            <mat-option *ngFor="let link of filteredContentLinks" [value]="link">
+              {{link}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field> -->
+        <button mat-icon-button class="actions-button" (click)="onNavigationClick('PROFILE')">
+          <mat-icon>person</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="isAdmin">
+      <h3 class="admin-panel-title"> {{ 'ADMIN_PANEL_TITLE' | translate }} </h3>
+      <div class="actios"></div>
+    </ng-container>
+  </mat-toolbar-row>
+</mat-toolbar>

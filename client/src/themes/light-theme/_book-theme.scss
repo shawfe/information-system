@@ -1,0 +1,148 @@
+@use '@angular/material' as mat;
+
+@mixin book-theme($theme) {
+  .book {
+    &-sidenav {
+      box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+
+      .selected-chapter, .selected-exercise {
+        .mat-button {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+        }
+      }
+
+      .chapter-indicator {
+        &.chapter-js {
+          background-color: rgba(mat.get-color-from-palette($app-yellow, 900), 0.2);
+
+          &.chapter-finished {
+            background-color: mat.get-color-from-palette($app-yellow, 900);
+          }
+        }
+
+        &.chapter-ts {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+
+          &.chapter-finished {
+            background-color: mat.get-color-from-palette($app-blue, 300);
+          }
+        }
+      }
+
+      .section-indicator {
+        &.section-js {
+          background-color: rgba(mat.get-color-from-palette($app-yellow, 900), 0.2);
+
+          &.section-finished {
+            background-color: mat.get-color-from-palette($app-yellow, 900);
+          }
+        }
+
+        &.section-ts {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+
+          &.section-finished {
+            background-color: mat.get-color-from-palette($app-blue, 300);
+          }
+        }
+      }
+
+      .exercise-indicator {
+        &.exercise-js {
+          background-color: rgba(mat.get-color-from-palette($app-yellow, 900), 0.2);
+
+          &.exercise-finished {
+            background-color: mat.get-color-from-palette($app-yellow, 900);
+          }
+        }
+
+        &.exercise-ts {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+
+          &.exercise-finished {
+            background-color: mat.get-color-from-palette($app-blue, 300);
+          }
+        }
+      }
+
+      .active-item,
+      .title-item {
+        .mat-icon {
+          color: mat.get-color-from-palette($app-blue, 400);
+        }
+      }
+
+      .active-item {
+        .mat-button {
+          color: mat.get-color-from-palette($app-blue, 400);
+        }
+
+        &::before {
+          background-color: mat.get-color-from-palette($app-blue, 400);
+        }
+      }
+
+      &-toggle {
+        background-color: #ffffff;
+      }
+
+      &-content {
+        background-color: mat.get-color-from-palette($app-blue, 50);
+
+        .book-content-wrapper {
+          background-color: #ffffff;
+        }
+      }
+    }
+
+    &-navigation-container {
+      .mat-button {
+        &:not(.mat-button-disabled):hover {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+          color: mat.get-color-from-palette($app-blue, 500);
+        }
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+
+    &-toolbar {
+      background-color: mat.get-color-from-palette($app-blue, 50);
+      box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+    }
+
+    &-title {
+      .exercise-progress {
+        display: flex;
+        column-gap: 4px;
+        margin-left: 40px;
+      }
+  
+      .progress-item {
+        color: #FFFFFF;
+
+        &.exercise-js {
+          background-color: rgba(mat.get-color-from-palette($app-yellow, 900), 0.3);
+
+          &.task-finished {
+            background-color: mat.get-color-from-palette($app-yellow, 900);
+          }
+        }
+
+        &.exercise-ts {
+          background-color: rgba(mat.get-color-from-palette($app-blue, 300), 0.3);
+
+          &.task-finished {
+            background-color: mat.get-color-from-palette($app-blue, 300);
+
+          }
+        }
+
+        &-overlay {
+          background-color: mat.get-color-from-palette($app-grey, 800);
+        }
+      }
+    }
+  }
+}

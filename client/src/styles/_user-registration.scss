@@ -1,0 +1,25 @@
+.user-registration {
+  &-table {
+    width: 100%;
+
+    .mat-header-row {
+      .mat-header-cell:first-child {
+        border-top-left-radius: 18px;
+      }
+      .mat-header-cell:last-child {
+        border-top-right-radius: 18px;
+      }
+    }
+
+    .mat-column-group {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+
+    .accept-button,
+    .decline-button {
+      border-radius: 6px;
+    }
+  }
+}

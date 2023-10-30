@@ -1,0 +1,12 @@
+@use '@angular/material' as mat;
+$typography: mat.define-typography-config(
+  $font-family: 'Gilroy, sans-serif',
+  $headline: mat.define-typography-level(20pt, 27pt, 400),
+  $title: mat.define-typography-level(14pt, 22pt, 400),
+  $subheading-2: mat.define-typography-level(12pt, 21pt, 400),
+  $body-1: mat.define-typography-level(11pt, 16pt, 400),
+  $body-2: mat.define-typography-level(11pt, 19pt, 700),
+  $caption: mat.define-typography-level(10pt, 17pt, 400),
+  $button: mat.define-typography-level(10pt, 10pt, 400),
+  $input: mat.define-typography-level(11pt, 1.125, 400)
+);

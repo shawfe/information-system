@@ -1,0 +1,11 @@
+
+<div class="auth-base">
+  <div class="logo">
+    <mat-icon class="logo-icon" color="accent" svgIcon="logo"></mat-icon>
+    <mat-icon class="logo-text" svgIcon="logo-text"></mat-icon>
+  </div>
+  <div class="auth-base-container" [ngClass]="getCustomClass()">
+    <ng-content></ng-content>
+  </div>
+</div>
+

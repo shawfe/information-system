@@ -1,0 +1,52 @@
+<auth-base customClass="sign-in">
+  <h2 class="mat-title sign-in-title">{{ 'SIGN_IN_TITLE' | translate }}</h2>
+  <form class="sign-in-body" [formGroup]="signInForm" (ngSubmit)="submit()">
+      <mat-form-field class="sign-in-field" appearance="outline">
+        <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="email"
+          autocomplete="off"
+          name="wisEmail"
+          #emailInput
+        />
+        <mat-icon matSuffix color="primary" class="inactive">mail</mat-icon>
+        <mat-error *ngIf="signInForm.get('email').hasError('required')">
+          {{ 'EMAIL_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="signInForm.get('email').hasError('pattern')">
+          {{ 'EMAIL_PATTERN_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="restore-password">
+        {{ 'FORGOT_PASSWORD' | translate}}
+        <a class="link" (click)="navigateToRestore()">{{ 'RESTORE' | translate }}</a>
+      </div>
+      <mat-form-field class="sign-in-field password-field" appearance="outline">
+        <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+        <input
+          [type]="isHidePassword ? 'password' : 'text'"
+          matInput
+          formControlName="password"
+          autocomplete="off"
+          name="wisPassword"
+          #passwordInput
+        />
+        <mat-icon matSuffix color="primary" (click)="passwordShowHide()">
+          {{ isHidePassword ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+        <mat-error *ngIf="signInForm.get('password').hasError('required')">
+          {{ 'PASSWORD_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="signInForm.get('password').hasError('minlength')">
+          {{ 'PASSWORD_MINLENGTH' | translate : { value: minLengthPassword } }}
+        </mat-error>
+      </mat-form-field>
+      <button class="sign-in-button" type="submit" mat-flat-button
+        color="primary" [disabled]="!isFormValid()">
+        {{ 'SIGN_IN_BUTTON' | translate }}
+      </button>
+  </form>
+</auth-base>

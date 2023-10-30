@@ -1,0 +1,14 @@
+.mat-card.sign-up-link-container {
+  .sign-up-link-field {
+    cursor: pointer;
+
+    .mat-form-field-wrapper {
+      padding: 10px;
+    }
+
+    .mat-form-field-infix {
+      padding: 0;
+      border-width: 0;
+    }
+  }
+}

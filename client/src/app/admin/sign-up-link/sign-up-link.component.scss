@@ -1,0 +1,86 @@
+.sign-up-link {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 550px;
+  
+    &.mat-card {
+      padding: 24px 32px 32px;
+    }
+
+    .mat-card-title {
+      margin-bottom: 12px;
+      text-align: center;
+    }
+  
+    .mat-card-subtitle {
+      text-align: center;
+    }
+  
+    .mat-card-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .duration-field {
+      width: 60%;
+    }
+  
+    .time-unit-field {
+      width: 30%;
+    }
+  
+    .link-expiration {
+      &-container {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        width: 100%;
+      }
+  
+      &-field {
+        flex-grow: 1;
+
+        &:not(:last-child) {
+          margin-right: 10px;
+        }
+
+        .mat-select {
+          font-size: 18px;
+          font-weight: 700;
+        }
+      }
+    }
+
+    .separator {
+      width: 70%;
+      height: 4px;
+      margin: 20px auto;
+      border-radius: 3px;
+    }
+  }
+
+  &-button {
+    width: 100%;
+    padding: 5px 16px;
+    border-radius: 30px;
+  }
+
+  &-field {
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px 5px;
+
+    .icon-copy-link {
+      margin-left: 5px;
+    }
+  }
+
+  &-input {
+    height: 20px;
+    padding: 6px 0;
+    cursor: pointer;
+    text-overflow: ellipsis;
+  }
+}

@@ -1,0 +1,62 @@
+.book-editing {
+  &-container {
+    .mat-tab-body-content {
+      overflow: hidden;
+    }
+
+    .edit-actions {
+      .small-gap-field {
+        .mat-form-field-wrapper {
+          padding-bottom: 8px;
+        }
+      }
+
+      .modify-action {
+        border-radius: 8px;
+      }
+    }
+
+    .book-sections-container {
+      .revert-button,
+      .remove-button {
+        border-radius: 6px;
+      }
+      
+    }
+    quill-editor {
+      overflow: hidden;
+    }
+
+    .ql-container {
+      height: calc(100% - 66px);
+    }
+
+    .ql-editor {
+      p {
+        word-break: break-word;
+      }
+    }
+
+    .mat-tab-body-wrapper {
+      height: 100%;
+    }
+  }
+}
+
+.chapter.cdk-drop-list-dragging .section-drop-container:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.chapter.cdk-drag-preview {
+  border-radius: 6px;
+  padding: 10px 30px;
+  vertical-align: middle;
+  font-size: 18px;
+
+  .mat-icon-button,
+  .mat-icon {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+}

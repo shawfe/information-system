@@ -1,0 +1,224 @@
+<div class="book-editing-container">
+  <mat-tab-group animationDuration="0ms" (selectedTabChange)="onTabChanged($event)">
+    <mat-tab [label]="'BOOK_EDIT_STRUCTURE' | translate">
+      <div class="structure-container">
+        <div class="structure-sections">
+          <div class="choose-book-container">
+            <mat-label class="container-title">{{ 'BOOK_SETTINGS' | translate }}</mat-label>
+            <div class="choose-field-container">
+              <mat-label class="field-label">{{ 'CHOOSE_BOOK_PART_TITLE' | translate }}</mat-label>
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'BOOK_PART' | translate }}</mat-label>
+                <mat-select [formControl]="structureSectionTypeControl" (selectionChange)="onChangeSectionType($event.value)">
+                  <mat-option *ngFor="let sectionType of sectionTypes" [value]="sectionType">
+                    {{ sectionType | translate }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="book-sections-container-wrapper">
+
+          <div class="book-sections-container">
+            <ng-container *ngIf="!(bookSections$ | async).length">
+              <div class="empty-table-message">
+                <span> {{ 'EMPTY_BOOK_STRUCTURE_MESSAGE' | translate }} </span>
+              </div>
+            </ng-container>
+            <div *ngFor="let section of bookSections$ | async" cdkDropListGroup>
+              <div
+                class="section-drop-container"
+                cdkDropList [cdkDropListData]="section.chapters"
+                (cdkDropListDropped)="onDropChapter($event)">
+                <div class="section">
+                  <div *ngIf="sectionIdsToRemove.has(section.id)" class="removed-item-overlay" (click)=$event.stopPropagation()></div>
+                  <div class="title">
+                    <span>
+                      {{ section.order + ' ' + section.title}}
+                    </span>
+                  </div>
+                  <button *ngIf="!sectionIdsToRemove.has(section.id)" mat-icon-button class="remove-button" (click)="onRemoveSection(section)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <button *ngIf="sectionIdsToRemove.has(section.id)" mat-icon-button class="revert-button" (click)="onRevertSection(section)">
+                    <mat-icon>replay</mat-icon>
+                  </button>
+                </div>
+                
+                <div class="chapter" *ngFor="let chapter of section.chapters" cdkDrag [cdkDragDisabled]="chapterIdsToRemove.has(chapter.id)">
+                <div *ngIf="chapterIdsToRemove.has(chapter.id)" class="removed-item-overlay" (click)=$event.stopPropagation()></div>
+                  <div class="title">
+                    <mat-icon>drag_indicator</mat-icon>
+                    <span>{{ section.order + '.' + chapter.order + ' ' + chapter.title }}</span>
+                  </div>
+                  <button *ngIf="!chapterIdsToRemove.has(chapter.id)" mat-icon-button class="remove-button" (click)="onRemoveChapter(chapter)">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <button *ngIf="chapterIdsToRemove.has(chapter.id) && !sectionIdsToRemove.has(chapter.sectionId)" mat-icon-button class="revert-button" (click)="onRevertChapter(chapter.id)">
+                    <mat-icon>replay</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="edit-actions">
+          <mat-label class="container-title">{{ 'SECTION' | translate }}</mat-label>
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'ADD_SECTION' | translate }}</mat-label>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'SECTION_NAME' | translate }}</mat-label>
+                <input matInput [formControl]="newSectionNameControl" autocomplete="off" name="sectionName">
+                <mat-error *ngIf="newSectionNameControl.hasError('required')">
+                  {{ 'ADD_SECTION_ERROR_EMPTY' | translate }}
+                </mat-error>
+                <mat-error *ngIf="newSectionNameControl.hasError('nonuniqueName')">
+                  {{ 'ADD_SECTION_ERROR_EXIST' | translate }}
+                </mat-error>
+              </mat-form-field>
+              
+              <button
+                mat-icon-button
+                class="modify-action"
+                [disabled]="newSectionNameControl.invalid"
+                (click)="onAddSection()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+            
+            <mat-label class="field-label">{{ 'RENAME_SECTION' | translate }}</mat-label>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'SECTION' | translate }}</mat-label>
+                <mat-select [formControl]="renameSectionControl">
+                  <mat-option *ngFor="let section of bookSections$ | async" [value]="section">
+                    {{ section.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button mat-icon-button class="modify-action" [disabled]="!renameSectionControl.value" (click)="onRenameSection()">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
+          <mat-label class="container-title">{{ 'CHAPTER' | translate }}</mat-label>
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'ADD_CHAPTER' | translate }}</mat-label>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline" class="small-gap-field">
+                <mat-label>{{ 'SECTION' | translate }}</mat-label>
+                <mat-select [formControl]="sectionForAddingChapter">
+                  <mat-option *ngFor="let section of bookSections$ | async" [value]="section">
+                    {{ section.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'CHAPTER_NAME' | translate }}</mat-label>
+                <input matInput [formControl]="newChapterNameControl" autocomplete="off" name="chapterName">
+                <mat-error *ngIf="newChapterNameControl.hasError('required')">
+                  {{ 'ADD_CHAPTER_ERROR_EMPTY' | translate }}
+                </mat-error>
+                <mat-error *ngIf="newChapterNameControl.hasError('nonuniqueName')">
+                  {{ 'ADD_CHAPTER_ERROR_EXIST' | translate }}
+                </mat-error>
+              </mat-form-field>
+              
+              <button
+                mat-icon-button
+                class="modify-action"
+                [disabled]="!(sectionForAddingChapter.value && newChapterNameControl.valid)"
+                (click)="onAddChapter()">
+                <mat-icon>add</mat-icon>
+              </button>
+            </div>
+          </div>
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'RENAME_CHAPTER' | translate }}</mat-label>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline" class="small-gap-field">
+                <mat-label>{{ 'SECTION' | translate }}</mat-label>
+                <mat-select [formControl]="sectionForRenameChapter" (selectionChange)="onChangeSectionForEditingChapter($event.value)">
+                  <mat-option *ngFor="let section of bookSections$ | async" [value]="section">
+                    {{ section.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="field-with-action">
+              <mat-form-field appearance="outline">
+                <mat-label>{{ 'CHAPTER' | translate }}</mat-label>
+                <mat-select [formControl]="renameChapterControl">
+                  <mat-option *ngFor="let chapter of chaptersForEditing$ | async" [value]="chapter">
+                    {{ chapter.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <button 
+                mat-icon-button
+                class="modify-action"
+                [disabled]="!(sectionForRenameChapter.value && renameChapterControl.value)"
+                (click)="onRenameChapter()">
+                <mat-icon>edit</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </mat-tab>
+    <mat-tab [label]="'BOOK_EDIT_CONTENT' | translate">
+      <div class="content-container">
+        <div class="content-controls">
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'CHOOSE_BOOK_PART_TITLE' | translate }}</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'BOOK_PART' | translate }}</mat-label>
+            <mat-select [formControl]="contentSectionTypeControl" (selectionChange)="onChangeSectionType($event.value)">
+              <mat-option *ngFor="let sectionType of sectionTypes" [value]="sectionType">
+                {{ sectionType | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'CHOOSE_SECTION_TITLE' | translate }}</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'SECTION' | translate }}</mat-label>
+            <mat-select [formControl]="contentSectionControl" (selectionChange)="onChangeSectionForEditingChapter($event.value)">
+              <mat-option *ngFor="let section of bookSections$ | async" [value]="section">
+                {{ section.title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+          <div class="choose-field-container">
+            <mat-label class="field-label">{{ 'CHOOSE_CHAPTER_TITLE' | translate }}</mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'CHAPTER' | translate }}</mat-label>
+            <mat-select [formControl]="contentChapterControl" (selectionChange)="onChangeChapterForEditing($event.value)">
+              <mat-option *ngFor="let chapter of chaptersForEditing$ | async" [value]="chapter">
+                {{ chapter.title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          </div>
+        </div>
+        <quill-editor #quill [modules]="quillModules" (onContentChanged)="onContentChanged($event)">
+        </quill-editor>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  <button
+    *ngIf="isUnsavedChanges$ | async"
+    mat-flat-button 
+    color="primary" 
+    class="save-changes-button"
+    (click)="onSaveChanges()">
+    {{ 'SAVE' | translate }}
+  </button>
+</div>

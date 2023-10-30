@@ -1,0 +1,30 @@
+.solve-pick-task-container {
+  .task-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .task-subtitle {
+    margin-bottom: 15px;
+  }
+
+  .task-radio-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .answer-option:not(:last-child) {
+    margin-bottom: 8px;
+  }
+
+  .answer-option-some:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+
+  .taks-complete-button {
+    margin-top: 24px;
+    padding: 5px 25px;
+    border-radius: 30px;
+  }
+}

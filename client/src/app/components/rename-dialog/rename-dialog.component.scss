@@ -1,0 +1,25 @@
+.dialog-title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  font-size: 18px;
+
+  .cross-icon {
+    margin: -4px -10px 0px 10px;
+  }
+}
+
+.name-field {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.white-spaced {
+  white-space: pre-line;
+  word-break: break-word;
+}

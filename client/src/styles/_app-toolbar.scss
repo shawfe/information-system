@@ -1,0 +1,49 @@
+@import './mixins';
+
+app-toolbar {
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+  top: 0;
+  left: 0;
+}
+
+.app-toolbar {
+  height: 64px;
+
+  .mat-mini-fab {
+    .mat-button-wrapper {
+      padding: 0;
+      line-height: 32px;
+
+      .mat-icon {
+        @include icon-size(32px);
+      }
+    }
+  }
+
+  .logo {
+    &-icon {
+      @include icon-size(52px);
+    }
+  }
+
+  .navigation {
+    &-item {
+      font-weight: 700;
+    }
+  }
+
+  .actions {
+    .mat-form-field-wrapper {
+      margin-bottom: -1.34375em;
+      .mat-form-field-flex {
+        padding-top: 0;
+
+        .mat-form-field-infix {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}

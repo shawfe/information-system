@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+
+@mixin auth-base-theme($theme) {
+  .auth-base {
+    .logo {
+      &-icon {
+        color: mat.get-color-from-palette($app-yellow, 900);
+        background-color: white;
+      }
+    }
+
+    &-container {
+      .mat-form-field:not(.mat-form-field-disabled) .mat-form-field-outline {
+        background-color: white;
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus,
+      input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px white inset !important;
+      }
+    }
+  }
+
+  .sign-up-subtitle,
+  .sign-in .restore-password,
+  .restore-subtitle,
+  .sign-up-finished-subtitle,
+  .email-confirmation-subtitle {
+    color: mat.get-color-from-palette($app-grey, 900);
+
+    .link {
+      color: mat.get-color-from-palette($app-blue, 400);
+
+      &:hover {
+        color: mat.get-color-from-palette($app-blue, 500);
+      }
+    }
+  }
+}

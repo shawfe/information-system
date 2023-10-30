@@ -1,0 +1,30 @@
+<div class="dialog-title">
+  <h1 mat-dialog-title [innerHTML]="title"></h1>
+  <button mat-icon-button color="primary" class="cross-icon" (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography">
+  <mat-form-field appearance="outline" class="name-field">
+    <mat-label> {{ 'NAME' | translate }} </mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="nameControl"
+    />
+    <mat-icon matSuffix color="primary" class="inactive">drive_file_rename_outline</mat-icon>
+    <mat-error *ngIf="nameControl.hasError('oldName')">{{ 'NAME_NOT_CHANGED' | translate }}</mat-error>
+    <mat-error *ngIf="nameControl.hasError('nonuniqueName')">{{ 'NAME_NOT_UNIQUE' | translate }}</mat-error>
+    <mat-error *ngIf="nameControl.hasError('required')">{{ 'NAME_REQUIRED' | translate }}</mat-error>
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="actions">
+    <button mat-button color="primary" cdkFocusInitial (click)="onClose()">
+      {{ 'CANCEL' | translate }}
+    </button>
+    <button mat-flat-button color="primary" (click)="onSaveClick()" [disabled]="nameControl.invalid">
+      {{ 'SAVE' | translate }}
+    </button>
+  </div>
+</mat-dialog-actions>

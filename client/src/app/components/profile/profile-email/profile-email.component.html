@@ -1,0 +1,43 @@
+<mat-card class="profile-email">
+  <mat-card-content class="content">
+    <div class="fields-container">
+      <mat-form-field class="disabled-bright" appearance="outline">
+        <mat-label> {{ 'CURRENT_EMAIL' | translate }} </mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="oldEmailControl"
+        />
+        <mat-icon color="primary" matSuffix class="inactive">email</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label> {{ 'NEW_EMAIL' | translate }} </mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="newEmailControl"
+        />
+        <mat-icon color="primary" matSuffix class="inactive">email</mat-icon>
+        <mat-error *ngIf="newEmailControl.hasError('required')">
+          {{ 'EMAIL_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="newEmailControl.hasError('pattern')">
+          {{ 'EMAIL_PATTERN_ERROR' | translate }}
+        </mat-error>
+        <mat-error *ngIf="newEmailControl.hasError('notChanged')">
+          {{ 'EMAIL_NOT_CHANGED' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      class="profile-email-button"
+      (click)="onSave()"
+      [disabled]="newEmailControl.invalid">
+        {{ 'SAVE_CHANGES' | translate }}
+      </button>
+  </mat-card-actions>
+</mat-card>

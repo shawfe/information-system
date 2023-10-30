@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+html, body { height: 100%; }
+body { margin: 0; }
+
+@import '~@angular/material/theming';
+@import './themes/light-theme/app-light-theme';
+@import './themes/light-theme/typography-config';
+
+@include mat.core($typography);
+
+@include mat.all-component-themes($app-light-theme);
+@include app-light-theme($app-light-theme);
+
+@import './styles/main';

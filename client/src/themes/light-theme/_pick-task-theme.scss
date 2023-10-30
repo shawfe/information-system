@@ -1,0 +1,35 @@
+@use '@angular/material' as mat;
+
+@mixin pick-task-theme($theme) {
+  .pick-task-container {
+    .mark-right-answer-button {
+      background-color: mat.get-color-from-palette($app-green, 50);
+      color: mat.get-color-from-palette($app-green, 900);
+      border: 1px solid mat.get-color-from-palette($app-green, 900);
+      
+      &:hover {
+        background-color: mat.get-color-from-palette($app-green, 100);
+      }
+
+      &.checked {
+        background-color: mat.get-color-from-palette($app-green, 900);
+        color: #FFFFFF;
+
+        &:hover {
+          border-color: mat.get-color-from-palette($app-green, 800);
+          background-color: mat.get-color-from-palette($app-green, 800);
+        }
+      }
+    }
+
+    .remove-answer-button {
+      background-color: mat.get-color-from-palette($app-red, 50);
+      color: mat.get-color-from-palette($app-red, 400);
+      border: 1px solid mat.get-color-from-palette($app-red, 400);
+
+      &:hover {
+        background-color: mat.get-color-from-palette($app-red, 100);
+      }
+    }
+  }
+}

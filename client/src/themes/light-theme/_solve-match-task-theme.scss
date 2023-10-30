@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+
+@mixin solve-match-task-theme($theme) {
+  .solve-match-task-container {
+    .left-part-item, .right-part-item {
+      background-color: mat.get-color-from-palette($app-blue, 50);
+      border: 1px solid mat.get-color-from-palette($app-blue, 200);
+    }
+  }
+
+  .right-part-item.cdk-drag-preview {
+    background-color: mat.get-color-from-palette($app-blue, 50);
+    border: 1px solid mat.get-color-from-palette($app-blue, 200);
+  }
+}

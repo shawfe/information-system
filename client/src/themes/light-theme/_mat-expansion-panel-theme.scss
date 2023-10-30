@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+@mixin mat-expansion-panel-theme($theme) {
+  .mat-expansion-indicator {
+    background-color: mat.get-color-from-palette($app-blue, 50);
+
+    &::after {
+      border-color: mat.get-color-from-palette($app-blue, 400);
+    }
+  }
+}

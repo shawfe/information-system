@@ -1,0 +1,11 @@
+.mat-tab-group {
+  .mat-tab-label {
+    flex-grow: 1;
+    font-weight: 700;
+    text-align: center;
+
+    &-active {
+      opacity: 1;
+    }
+  }
+}

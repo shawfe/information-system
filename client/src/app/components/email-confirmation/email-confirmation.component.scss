@@ -1,0 +1,20 @@
+.email-confirmation {
+  &-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  &-subtitle {
+    margin-bottom: 34px;
+    white-space: pre-wrap;
+  }
+
+  &-button {
+    align-self: flex-start;
+    padding: 3px 16px;
+    margin-top: 10px;
+    border-radius: 30px;
+  }
+}
+

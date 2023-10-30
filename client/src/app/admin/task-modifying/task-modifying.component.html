@@ -1,0 +1,124 @@
+<div class="task-modifying-container">
+  <div class="options-container-wrapper">
+      <form [formGroup]="exerciseOptionsFormGroup" (ngSubmit)="onAddVariant()" class="options-container">
+        <div class="field-container">
+          <mat-label class="field-label"> {{ 'CHOOSE_BOOK_PART' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'BOOK_PART' | translate }} </mat-label>
+            <mat-select formControlName="sectionType" (selectionChange)="onChangeSectionType($event.value)" #sectionTypeSelect (openedChange)="onOptionSelectClick(sectionTypeSelect)">
+              <mat-option *ngFor="let sectionType of sectionTypes" [value]="sectionType">
+                {{ sectionType | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field-container">
+          <mat-label class="field-label"> {{ 'CHOOSE_SECTION' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'SECTION' | translate }} </mat-label>
+            <mat-select formControlName="section" (selectionChange)="onChangeSection($event.value)" #sectionSelect (openedChange)="onOptionSelectClick(sectionSelect)">
+              <mat-option *ngFor="let section of bookSections$ | async" [value]="section">
+                {{ section.title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field-container" *ngIf="isCreateTaskMode">
+          <mat-label class="field-label"> {{ 'INPUT_EXERCISE_NAME' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'EXERCISE_NAME' | translate }} </mat-label>
+            <input matInput formControlName="exercise">
+            <mat-error *ngIf="exerciseControl.hasError('required')">
+              {{ 'EXERCISE_NAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="field-container" *ngIf="!isCreateTaskMode">
+          <mat-label class="field-label"> {{ 'CHOOSE_EXERCISE' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'EXERCISE' | translate }} </mat-label>
+            <mat-select formControlName="exercise" (selectionChange)="onChangeExercise($event.value)" #exerciseSelect (openedChange)="onOptionSelectClick(exerciseSelect)">
+              <mat-option *ngFor="let exercise of exercises$ | async" [value]="exercise">
+                {{ exercise.title }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="field-container" *ngIf="!isCreateTaskMode">
+          <mat-label class="field-label"> {{ 'RENAME_EXERCISE' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'EXERCISE_NAME' | translate }} </mat-label>
+            <input matInput formControlName="renameExercise">
+            <mat-icon *ngIf="isShowApplyRename$ | async" matSuffix class="apply-rename-icon" color="primary" (click)="onRenameExerciseClick()">done</mat-icon>
+            <mat-error *ngIf="renameExerciseControl.hasError('required')">
+              {{ 'EXERCISE_NAME_REQUIRED' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button
+          mat-flat-button
+          color="primary"
+          class="add-button"
+          type="submit"
+          [disabled]="!sectionControl.value || !exerciseControl.value">
+          {{ 'ADD_VARIANT' | translate }}
+        </button>
+      </form>
+    </div>
+    <div class="exercise-container-wrapper">
+  <div *ngIf="(variants$ | async).length" class="exercise-container">
+    <div class="exercise-card" *ngFor="let variant of variants$ | async">
+      <h2 class="card-title"> {{ 'VARIANT_NUMBER' | translate: { value: variantIndex + 1 } }} </h2>
+      <button mat-icon-button color="primary" class="remove-variant-button" (click)="onRemoveVariant()">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-paginator 
+        [hidePageSize]="true"
+        [pageSize]="1"
+        class="task-paginator"
+        [ngClass]="{ 'hidden-element': !(tasks$ | async).length }"
+        #taskPaginator>
+      </mat-paginator>
+      <div class="card-content" *ngFor="let task of tasks$ | async">
+        <div class="task-title-container">
+          <h3 class="task-title"> {{ 'TASK_NUMBER' | translate: { value: taskIndex + 1 } }} </h3>
+          <button mat-icon-button class="remove-task-button" (click)="onRemoveTask()">
+            <mat-icon color="warn">delete</mat-icon>
+          </button>
+        </div>
+        <div class="field-container">
+          <mat-label class="field-label"> {{ 'CHOOSE_TASK_TYPE' | translate }} </mat-label>
+          <mat-form-field appearance="outline">
+            <mat-label> {{ 'TASK_TYPE' | translate }} </mat-label>
+            <mat-select [formControl]="getTaskTypeControl()" (selectionChange)="onChangeTaskType($event.value)">
+              <mat-option *ngFor="let taskType of taskTypes" [value]="taskType">
+                {{ taskType | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <pick-task *ngIf="isPickTask(task)" [initialData]=getPickTaskData() [taskType]="task.type" (taskChanged)="onPickTaskChanged($event)"></pick-task>
+        <match-task *ngIf="isMatchTask(task)" [initialData]=getMatchTaskData() [taskType]="task.type" (taskChanged)="onMatchTaskChanged($event)"></match-task>
+      </div>
+      <button class="add-task-button" mat-flat-button color="primary" (click)=onAddTask()> {{'ADD_TASK' | translate}} </button>
+    </div>
+    <mat-paginator 
+      [hidePageSize]="true"
+      [pageSize]="1"
+      class="variant-paginator"
+      [ngClass]="{ 'hidden-element': !(variants$ | async).length }"
+      #variantPaginator
+      (page)="onVariantPaginatorChange()">
+    </mat-paginator>
+  </div>
+</div>
+
+  <button
+    *ngIf="isUnsavedChanges$ | async"
+    mat-flat-button 
+    color="primary" 
+    class="save-changes-button"
+    (click)="onSaveChanges()">
+    {{ 'SAVE' | translate }}
+  </button>
+</div>

@@ -1,0 +1,19 @@
+<div class="dialog-title">
+  <h1 mat-dialog-title [innerHTML]="title"></h1>
+  <button mat-icon-button color="primary" class="cross-icon" (click)="onClose()">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<mat-dialog-content class="mat-typography">
+  <span class="white-spaced" [innerHTML]="message"></span>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <div class="actions">
+    <button mat-button color="primary" cdkFocusInitial (click)="onClose()">
+      {{ reject | translate }}
+    </button>
+    <button mat-flat-button *ngIf="confirm !== 'HIDE'" color="primary" (click)="onConfirmClick()">
+      {{ confirm | translate }}
+    </button>
+  </div>
+</mat-dialog-actions>

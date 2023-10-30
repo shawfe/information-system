@@ -1,0 +1,32 @@
+.ql-container .ql-editor,
+.book-content-chapter {
+  blockquote {
+    margin: 14px 0;
+    padding: 24px 26px;
+    border-radius: 10px;
+  }
+
+  ul,
+  ol {
+    margin-left: 24px;
+  }
+
+  ul {
+    list-style: none;
+
+    li::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin: 0 10px 0 -18px;
+      border-radius: 2px;
+    }
+  }
+
+  .ql-syntax {
+    padding: 12px 28px;
+    white-space: normal;
+    border-radius: 16px;
+  }
+}

@@ -1,0 +1,11 @@
+.mat-paginator {
+  &-range-actions {
+    .mat-icon-button {
+      border-radius: 8px;
+    }
+  }
+
+  &-navigation-previous.mat-icon-button {
+    margin-right: 12px; 
+  }
+}

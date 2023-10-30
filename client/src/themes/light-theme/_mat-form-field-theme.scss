@@ -1,0 +1,74 @@
+@use '@angular/material' as mat;
+
+@mixin mat-form-field-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .mat-form-field {
+    &:not(.mat-form-field-disabled).mat-focused,
+    &:not(.mat-form-field-disabled):hover {
+      .mat-form-field-label {
+        color: mat.get-color-from-palette($app-blue, 500);
+      }
+      .mat-form-field-ripple {
+        background-color: mat.get-color-from-palette($app-blue, 500);
+      }
+
+      .mat-form-field-underline {
+        background-color: mat.get-color-from-palette($app-blue, 500);
+      }
+
+      .mat-select-arrow {
+        color: mat.get-color-from-palette($primary, 500);
+      }
+    }
+
+    
+    .mat-form-field-label {
+      color: mat.get-color-from-palette($app-grey, 900);
+    }
+
+    .mat-form-field-underline {
+      background-color: mat.get-color-from-palette($app-grey, 900);
+    }
+
+    &.mat-form-field-appearance-outline {
+      .mat-form-field-outline {
+        color: mat.get-color-from-palette($primary, 200);
+      }
+    }
+
+    &:hover.mat-form-field-appearance-outline {
+      .mat-form-field-outline {
+        color: mat.get-color-from-palette($primary, 300);
+      }
+    }
+
+    .mat-select-arrow {
+      color: mat.get-color-from-palette($primary, 300);
+    }
+
+    &:not(.mat-form-field-disabled) {
+      &.mat-primary {
+        .mat-form-field-outline {
+          background-color: mat.get-color-from-palette($primary, 50);
+        }
+      }
+    }
+
+    &.mat-form-field-disabled {
+      &.mat-primary {
+        .mat-form-field-outline {
+          background-color: mat.get-color-from-palette($app-grey, 100);
+        }
+      }
+    }
+
+    &.mat-form-field-disabled.disabled-bright {
+      &.mat-primary {
+        .mat-form-field-outline {
+          background-color: mat.get-color-from-palette($primary, 50);
+        }
+      }
+    }
+  }
+}

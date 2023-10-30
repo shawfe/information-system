@@ -1,0 +1,30 @@
+<div class="pick-task-container">
+  <mat-form-field appearance="outline">
+    <mat-label> {{ 'QUESTION' | translate }} </mat-label>
+    <textarea matInput
+    class="question-area"
+    cdkTextareaAutosize
+    [formControl]="questionControl"
+    #autosize="cdkTextareaAutosize"
+    cdkAutosizeMinRows="1"
+    cdkAutosizeMaxRows="15"
+    ></textarea>
+    <!-- <input matInput [formControl]="questionControl"> -->
+  </mat-form-field>
+  <div class="answers-container">
+    <div class="answer" *ngFor="let control of answersFormArray.controls as FormControl; let i = index">
+      <div class="answer-order"> {{ i + 1 }} </div>
+      <mat-form-field appearance="outline" >
+        <mat-label> {{ 'ANSWER_VARIANT_NUMBER' | translate: { value: i + 1 } }} </mat-label>
+        <input matInput [formControl]="getAsnwersFormArrayControl(i)">
+        <button class="mark-right-answer-button" [ngClass]="{'checked': getMarkState(i)}" matSuffix mat-icon-button (click)="onMarkRightAnswer(i, $event)">
+          <mat-icon>done</mat-icon>
+        </button>
+        <button class="remove-answer-button" matSuffix mat-icon-button (click)="onRemoveAnswer(i, $event)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <button class="answer-add-button" mat-button (click)="onAddAnswer()" color="primary"> {{'ADD_ANSWER_VARIANT' | translate }} </button>
+  </div>
+</div>

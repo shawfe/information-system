@@ -1,0 +1,30 @@
+.pick-task-container {
+  position: relative;
+  padding-bottom: 24px;
+
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .question-area {
+    overflow-y: hidden;
+  }
+
+  .answer {
+    display: flex;
+    align-items: center;
+
+    &-order {
+      margin-right: 15px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    &-add-button {
+      position: absolute;
+      right: 0;
+      bottom: -15px;
+      border-radius: 24px;
+    }
+  }
+}

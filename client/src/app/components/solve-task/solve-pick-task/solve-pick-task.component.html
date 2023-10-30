@@ -1,0 +1,25 @@
+<div class="solve-pick-task-container">
+  <div class="task-title"> {{ initialData.question }} </div>
+  <div class="task-subtitle">
+    {{ (pickTask.type === 'PICK_ONE' ? 'CHOOSE_ONE_VARIANT' : 'CHOOSE_SOME_VARIANTS') | translate}}
+  </div>
+  <div *ngIf="pickTask.type === 'PICK_ONE'">
+    <mat-radio-group [formControl]="pickOneControl" class="task-radio-container">
+      <mat-radio-button *ngFor="let answer of initialData.answers" [value]="answer" color="primary" class="answer-option">
+        {{ answer.text }} 
+      </mat-radio-button>
+    </mat-radio-group>
+    <button mat-flat-button [disabled]="!pickOneControl.value" class="taks-complete-button" color="primary" (click)="onTaskComplete()">
+      {{ (isLastTask ? 'FIHISH_EXERCISE' : 'NEXT_TASK') | translate }}
+    </button>
+  </div>
+
+  <div *ngIf="pickTask.type === 'PICK_SOME'">
+    <div *ngFor="let answer of pickTask.answers; let answerIndex = index" class="answer-option-some">
+      <mat-checkbox [formControl]="getPickSomeFormArrayControl(answerIndex)" color="primary"> {{ answer.text }} </mat-checkbox>
+    </div>
+    <button mat-flat-button [disabled]="disableCompleteButton" class="taks-complete-button" color="primary" (click)="onTaskComplete()">
+      {{ (isLastTask ? 'FIHISH_EXERCISE' : 'NEXT_TASK') | translate }}
+    </button>
+  </div>
+</div>

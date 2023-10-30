@@ -1,0 +1,34 @@
+@import './mixins';
+
+.mat-expansion-panel {
+  border-radius: 24px !important;
+
+  &-header {
+    &-title {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 40px;
+    }
+
+    &-description {
+      align-items: center;
+
+      .mat-icon-button {
+        @include button-size(32px);
+      }
+    }
+  }
+}
+
+.mat-expansion-indicator {
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  text-align: center;
+
+  &::after {
+    position: absolute;
+    top: 7px;
+    left: 8px;
+  }
+}

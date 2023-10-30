@@ -1,0 +1,171 @@
+.book-editing {
+  &-container {
+    position: relative;
+    height: calc(100% - 48px);
+    margin: 24px 5%;
+    padding: 0 21px 30px 36px;
+    border-radius: 24px;
+
+    .mat-tab-group {
+      height: 100%;
+    }
+
+    .structure-container {
+      display: flex;
+      column-gap: 32px;
+      margin-top: 28px;
+      height: calc(100% - 28px);
+
+      .structure-sections {
+        flex-grow: 1;
+        height: 100%;
+      }
+
+      .book-sections-container-wrapper {
+        height: calc(100% - 139px);
+        padding: 20px 9px 24px;
+        border-radius: 24px;
+      }
+
+      .book-sections-container {
+        height: 100%;
+        position: relative;
+        padding-right: 15px;
+        overflow-y: auto;
+
+        .section,
+        .chapter {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          position: relative;
+          min-height: 62px;
+          padding: 10px 15px;
+          margin-right: 50px;
+          border-radius: 6px;
+
+          .title {
+            display: flex;
+            align-items: center;
+          }
+
+          .remove-button {
+            margin-left: 10px;
+          }
+
+          .revert-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: -50px;
+          }
+
+          .removed-item-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+          }
+        }
+
+        .chapter {
+          margin-top: 10px;
+
+          &:not(.cdk-drag-disabled) {
+            cursor: move;
+          }
+        }
+      }
+
+      .edit-actions {
+        height: 100%;
+        overflow-y: auto;
+        flex-grow: 1;
+        padding-right: 15px;
+      }
+
+      .book-sections-container-wrapper:not(:first-child) {
+        .section {
+          margin-top: 10px;
+        }
+      }
+
+      .container-title {
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .field-label {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .choose-field-container {
+        display: flex;
+        flex-direction: column;
+
+        .mat-form-field {
+          width: 100%;
+        }
+
+        .field-with-action {
+          position: relative;
+          padding-right: 52px;
+        }
+
+        .modify-action {
+          position: absolute;
+          right: 0px;
+          top: 10px;
+        }
+      }
+
+      .empty-table-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .content-container {
+      display: grid;
+      grid-template-rows: max-content auto;
+      height: 100%;
+      padding-right: 15px;
+
+      .content-controls {
+        display: flex;
+        column-gap: 10px;
+        margin: 10px 0;
+      }
+
+      .field-label {
+        display: inline-block;
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .choose-field-container {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+    }
+
+    .save-changes-button {
+      position: absolute;
+      top: -74px;
+      right: 0;
+      padding: 0 40px;
+      border-radius: 40px;
+      z-index: 999;
+    }
+  }
+}

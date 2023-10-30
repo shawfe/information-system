@@ -1,0 +1,10 @@
+node_modules
+public
+bin
+build
+dist
+e2e
+library
+docker
+**/*.js
+**/*.d.ts

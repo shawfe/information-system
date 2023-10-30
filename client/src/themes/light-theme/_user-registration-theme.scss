@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+
+@mixin user-registration-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .user-registration-table {
+    background-color: transparent !important;
+
+    .mat-header-row {
+      background-color: mat.get-color-from-palette($app-blue, 50);
+    }
+
+    .mat-column-link {
+      .mat-icon {
+        color: mat.get-color-from-palette($app-blue, 300);
+
+        &:hover {
+          color: mat.get-color-from-palette($app-blue, 100);
+        }
+      }
+    }
+
+    .accept-button {
+      background-color: mat.get-color-from-palette($app-green, 50);
+
+      &:hover:not([disabled]) {
+        background-color: mat.get-color-from-palette($app-green, 200);
+      }
+
+      .mat-icon {
+        color: mat.get-color-from-palette($app-green, 600);
+      }
+    }
+
+    .decline-button {
+      background-color: mat.get-color-from-palette($app-red, 50);
+
+      &:hover:not([disabled]) {
+        background-color: mat.get-color-from-palette($app-red, 200);
+      }
+
+      .mat-icon {
+        color: mat.get-color-from-palette($app-red, 600);
+      }
+    }
+  }
+}

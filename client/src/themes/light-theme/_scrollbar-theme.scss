@@ -1,0 +1,25 @@
+@use '@angular/material' as mat;
+
+@mixin scrollbar-theme($theme) {
+  $light-blue: mat.get-color-from-palette($app-blue, 200);
+  $main-blue: mat.get-color-from-palette($app-blue, 400);
+  $dark-blue: mat.get-color-from-palette($app-blue, 500);
+
+  body {
+    scrollbar-color: $main-blue $light-blue;
+
+      ::-webkit-scrollbar-track {
+        background: $light-blue;
+      }
+      
+      /* Handle */
+      ::-webkit-scrollbar-thumb {
+        background: $main-blue;
+      }
+      
+      /* Handle on hover */
+      ::-webkit-scrollbar-thumb:hover {
+        background:  $dark-blue;
+      }
+  }
+}

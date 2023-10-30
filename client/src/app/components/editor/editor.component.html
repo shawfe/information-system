@@ -1,0 +1,21 @@
+<div class="editor">
+  <div class="editor-wrapper">
+    <div class="editor-body">
+      <div #editor class="editor-code"></div>
+    </div>
+    <div class="editor-footer">
+      <div class="editor-footer-left">
+        <button class="editor-btn editor-run" (click)="onCheckCode()">Run</button>
+        <button class="editor-btn editor-reset" (click)="onReset()">Reset</button>
+        <button class="editor-btn editor-run" (click)="onCheckCode(false)">Send</button>
+      </div>
+      <div class="editor-footer-right">
+        <div class="editor-console">
+          <ul class="editor-console-logs">
+            <li *ngFor="let logItem of isConsoleLogsObservable | async" class="editor-console-logs-item">{{ logItem }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

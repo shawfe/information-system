@@ -1,0 +1,23 @@
+.auth-base {
+  .logo-icon {
+    @include icon-size(52px);
+  }
+
+  .password-field {
+    .mat-icon {
+      cursor: pointer;
+    }
+  }
+}
+
+.sign-in {
+  .restore-password {
+    align-self: flex-end;
+    margin-bottom: 2px;
+    font-size: 12px;
+
+    .link {
+      cursor: pointer;
+    }
+  }
+}

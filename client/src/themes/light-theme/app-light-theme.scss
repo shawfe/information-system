@@ -1,0 +1,288 @@
+@use '@angular/material' as mat;
+
+@import './mat-card-theme';
+@import './mat-expansion-panel-theme';
+@import './mat-form-field-theme';
+@import './mat-icon-theme';
+@import './mat-paginator-theme';
+@import './mat-table-theme';
+@import './mat-tabs-theme';
+
+@import './admin-theme';
+@import './app-toolbar-theme';
+@import './auth-base-theme';
+@import './book-editing-theme';
+@import './book-theme';
+@import './content-theme';
+@import './main-theme';
+@import './pick-task-theme';
+@import './profile.theme';
+@import './scrollbar-theme';
+@import './sign-up-link-theme';
+@import './solve-match-task-theme';
+@import './task-modifying-theme';
+@import './user-editing-theme';
+@import './user-registration-theme';
+@import './user-results-theme';
+
+$app-blue: (
+  50: #E8F2FB,
+  100: #D3EAFD,
+  200: #9BCFF9,
+  300: #8CBBE9,
+  400: #2196F3,
+  500: #1976D2,
+  600: #0068a6,
+  700: #005d9c,
+  800: #005393,
+  900: #004183,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: white,
+  )
+);
+
+$app-red: (
+  50 : #FFEEEE,
+  100 : #ffc1c9,
+  200 : #ff98a6,
+  300 : #ff6e82,
+  400: #FF5252,
+  500 : #ff304c,
+  600 : #ff2b45,
+  700 : #ff243c,
+  800 : #ff1e33,
+  900 : #ff1324,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $white-87-opacity,
+    900: $white-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-yellow: (
+  50 : #fffae7,
+  100 : #fef3c2,
+  200 : #feec9a,
+  300 : #fee472,
+  400 : #fdde53,
+  500 : #fdd835,
+  600 : #fdd430,
+  700 : #fcce28,
+  800 : #fcc822,
+  900 : #FFC107,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $black-87-opacity,
+    800: $black-87-opacity,
+    900: $black-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-green: (
+  50 : #EEF7EE,
+  100 : #dff8b9,
+  200 : #caf38b,
+  300 : #b5ee5c,
+  400 : #a5ea39,
+  500 : #95e616,
+  600 : #8de313,
+  700 : #82df10,
+  800 : #72c275,
+  900 : #4CAF50,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: $black-87-opacity,
+    900: $black-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-grey: (
+  50 : #fdfdfd,
+  100 : #f9f9f9,
+  200 : #f6f6f6,
+  300 : #f2f2f2,
+  400 : #efefef,
+  500 : #ececec,
+  600 : #eaeaea,
+  700 : #e7e7e7,
+  800 : #c4c4c4,
+  900 : #757575,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $black-87-opacity,
+    800: $black-87-opacity,
+    900: $black-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$app-purple: (
+  50 : #F3E5F5,
+  100 : #EAE1FF,
+  200 : #E1BEE7,
+  300 : #CE93D8,
+  400 : #BFA5FE,
+  500 : #BA68C8,
+  600 : #AB47BC,
+  700 : #8E24AA,
+  800 : #7B1FA2,
+  900 : #6A1B9A,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: $black-87-opacity,
+    600: $black-87-opacity,
+    700: $black-87-opacity,
+    800: $black-87-opacity,
+    900: $black-87-opacity,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: $black-87-opacity,
+    A700: $black-87-opacity,
+  )
+);
+
+$mat-app-light-theme-foreground: (
+  base:              $black-87-opacity,
+  divider:           mat.get-color-from-palette($app-grey, 500),
+  dividers:          mat.get-color-from-palette($app-grey, 500),
+  disabled:           mat.get-color-from-palette($app-grey, 900),
+  disabled-button:   white, //TODO
+  disabled-text:     mat.get-color-from-palette($app-grey, 900),
+  disabled-bright:   mat.get-color-from-palette($app-grey, 900),
+  hint-text:         mat.get-color-from-palette($app-grey, 900),
+  secondary-text:   mat.get-color-from-palette($app-grey, 900),
+  icon:              rgba(black, 0.54), //TODO
+  icons:             rgba(black, 0.54), //TODO
+  text:              $black-87-opacity,
+  slider-min:        rgba(black, 0.87), //TODO
+  slider-on:         rgba(#12abdb, 0.30), //TODO
+  slider-on-active:  rgba(#12abdb, 0.40), //TODO
+  slider-off:        rgba(black, 0.05), //TODO
+  slider-off-active: rgba(black, 0.10), //TODO
+  placeholder:       mat.get-color-from-palette($app-grey, 900),
+);
+
+$mat-app-light-theme-background: (
+  status-bar: map_get(mat.$grey-palette, 300),
+  app-bar:    white,
+  background: map_get(mat.$grey-palette, 50),
+  hover:      rgba(black, 0.04),
+  icon: mat.get-color-from-palette($app-blue, 300),
+  card:       white,
+  dialog:     white,
+  disabled-button: mat.get-color-from-palette($app-blue, 300),
+  raised-button: white,
+  focused-button: $black-6-opacity,
+  selected-button: map_get(mat.$grey-palette, 300),
+  selected-disabled-button: map_get(mat.$grey-palette, 400),
+  disabled-button-toggle: map_get(mat.$grey-palette, 200),
+  unselected-chip: white,
+  disabled-list-option: map_get(mat.$grey-palette, 200),
+  tooltip: map_get(mat.$grey-palette, 600)
+);
+
+
+@function mat-app-light-theme($primary1, $accent, $accent2, $accent3, $warn) {
+  @return (
+    primary: $primary1,
+    accent: $accent,
+    accent2: $accent2,
+    accent3: $accent3,
+    warn: $warn,
+    foreground: $mat-app-light-theme-foreground,
+    background: $mat-app-light-theme-background,
+  );
+}
+
+$app-light-theme: mat-app-light-theme(
+  mat.define-palette($app-blue, 400),
+  mat.define-palette($app-green, 900),
+  mat.define-palette($app-yellow, 400),
+  mat.define-palette($app-purple, 400),
+  mat.define-palette($app-red, 400)
+);
+
+@mixin app-light-theme($theme) {
+  @include mat-card-theme($theme);
+  @include mat-expansion-panel-theme($theme);
+  @include mat-form-field-theme($theme);
+  @include mat-icon-theme($theme);
+  @include mat-paginator-theme($theme);
+  @include mat-table-theme($theme);
+  @include mat-tabs-theme($theme);
+
+  @include admin-theme($theme);
+  @include app-toolbar-theme($theme);
+  @include auth-base-theme($theme);
+  @include book-editing-theme($theme);
+  @include book-theme($theme);
+  @include content-theme($theme);
+  @include main-theme($theme);
+  @include pick-task-theme($theme);
+  @include profile-theme($theme);
+  @include scrollbar-theme($theme);
+  @include sign-up-link-theme($theme);
+  @include solve-match-task-theme($theme);
+  @include task-modifying-theme($theme);
+  @include user-editing-theme($theme);
+  @include user-registration-theme($theme);
+  @include user-results-theme($theme);
+}

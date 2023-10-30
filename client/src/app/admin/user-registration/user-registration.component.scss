@@ -1,0 +1,57 @@
+.user-registration {
+  &-container {
+    display: flex;
+    margin: 24px 5%;
+
+    .empty-table-message {
+      margin: auto;
+    }
+
+    .hidden-element {
+      height: 0;
+      opacity: 0;
+    }
+  }
+
+  &-card {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-left: 24px;
+
+    .mat-card-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+    }
+
+    .mat-card-title {
+      margin-bottom: 12px;
+    }
+
+    .mat-card-title, .mat-card-subtitle {
+      text-align: center;
+    }
+  }
+
+  &-table {
+    width:  100%;
+
+    .mat-header-cell:not(:last-child), .mat-cell:not(:last-child) {
+      padding-right: 20px;
+    }
+
+  .mat-column-firstName, .mat-column-lastName {
+    min-width: 20%;
+  }
+
+    .mat-column-accept, .mat-column-decline {
+      width: 50px;
+
+      &.mat-cell {
+        text-align: center;
+      }
+    }
+  }
+}

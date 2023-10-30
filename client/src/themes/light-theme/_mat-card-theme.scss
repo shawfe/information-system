@@ -1,0 +1,7 @@
+@use '@angular/material' as mat;
+
+@mixin mat-card-theme($theme) {
+  mat-card.mat-card {
+    box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+  }
+}

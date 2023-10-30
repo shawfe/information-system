@@ -1,0 +1,140 @@
+
+
+
+<div class="user-results-container">
+  <mat-accordion class="groups-accordion" multi>
+    <mat-expansion-panel *ngFor="let group of (groupsWithUsers$ | async); let i = index">
+      <mat-expansion-panel-header >
+        <mat-panel-title>
+          {{ group.name }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <table *ngIf="groupsDataSourceMap.get(group.id).data.length; else emptyGroup"
+        [dataSource]="groupsDataSourceMap.get(group.id)" 
+        mat-table
+        class="users-table">
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef> {{ 'FIRST_NAME' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> {{ user.firstName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef> {{ 'LAST_NAME' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> {{ user.lastName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastActivity">
+          <th mat-header-cell *matHeaderCellDef> {{ 'ACTIVITY' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> 
+            {{ user.lastActiveDate }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="details">
+          <th mat-header-cell *matHeaderCellDef> {{ 'SEE_MORE' | translate }} </th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button class="details-button" (click)="onDetailsClick(user)" [ngClass]="{ 'selected-user': (selectedUser$ | async)?.id === user.id }">
+              <mat-icon>visibility</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="groupDisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: groupDisplayedColumns"></tr>
+      </table>
+      <mat-paginator #userGroupsPaginator [ngClass]="{'hidden-element': !groupsDataSourceMap.get(group.id).data.length}" [hidePageSize]="true" [pageSize]="6"></mat-paginator>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+
+  <div class="user-progress-container" *ngIf="progress$ | async as progress">
+    <div class="user-results">
+      <div class="user-results-title">
+        <div class="user-info">
+          <div class="username">
+            <span *ngIf="selectedUser$ | async as user">{{ user.firstName + ' ' + user.lastName }}</span>
+          </div>
+          <div class="user-group">
+            <span *ngIf="selectedUser$ | async as user">{{ groupNamesMap.get(user.groupId) }}</span>
+          </div>
+        </div>
+        <div class="user-activity">
+          <div class="activity-label">
+            <span>{{ ('RECENT_ACTIVITY' | translate) + ':' }}</span>
+          </div>
+          <div class="activity-time">
+            <span>{{ progress.lastModifiedDate }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="user-progress-content">
+        <div class="progress-bars-container">
+          <div class="progress-bars-title"> {{ 'PROGRESS' | translate }} </div>
+          <div class="progress-bars">
+            <div class="progress-bar progress-bar-javascript">
+              <div class="bar-title">JavaScript</div>
+              <mat-progress-bar class="progress-bar-indicator" [value]="getBarValue('JAVASCRIPT')"></mat-progress-bar>
+              <div class="progress-percents">{{ getBarValue('JAVASCRIPT') + '%' }}</div>
+            </div>
+            <div class="progress-bar progress-bar-typescript">
+              <div class="bar-title">TypeScript</div>
+              <mat-progress-bar class="progress-bar-indicator" [value]="getBarValue('TYPESCRIPT')"></mat-progress-bar>
+              <div class="progress-percents">{{getBarValue('TYPESCRIPT') + '%'}}</div>
+            </div>
+          </div>
+        </div>
+        <div class="results-table-container">
+          <div class="table-title"> {{ 'USER_PROGRESS' | translate }} </div>
+          <table
+            *ngIf="(progressItems$ | async).length"
+            [dataSource]="progressDataSource" 
+            mat-table
+            class="results-table">
+            <ng-container matColumnDef="date">
+              <th mat-header-cell *matHeaderCellDef> {{ 'DATE' | translate }} </th>
+              <td mat-cell *matCellDef="let element"> {{ element.finishedDate ?? '-' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="section">
+              <th mat-header-cell *matHeaderCellDef> {{ 'SECTION' | translate }} </th>
+              <td mat-cell *matCellDef="let element"> {{element.sectionType | translate}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef> {{ 'NAME_TITLE' | translate }} </th>
+              <td mat-cell *matCellDef="let element"> {{ element.itemData.title ?? '-' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="points">
+              <th mat-header-cell *matHeaderCellDef> {{ 'POINTS' | translate }} </th>
+              <td mat-cell *matCellDef="let element"> {{ getPointsLabel(element) }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mark">
+              <th mat-header-cell *matHeaderCellDef> {{ 'MARK' | translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{ getMarkLabel(element) }} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="resultDisplayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: resultDisplayedColumns"></tr>
+          </table>
+          <mat-paginator #userProgressPaginator [ngClass]="{ 'hidden-element': !(progressItems$ | async).length }" [hidePageSize]="true" [pageSize]="6"></mat-paginator>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyGroup>
+  <div class="empty-table-message">
+    {{ 'EMPTY_GROUP_MESSAGE' | translate }}
+  </div>
+</ng-template>
+
+
+<ng-template #emptyProgressContent>
+  <div class="progress">
+    <mat-progress-bar class="progress-bar" value="0"></mat-progress-bar>
+  </div>
+</ng-template>

@@ -1,0 +1,23 @@
+<div class="match-task-container">
+  <div class="answers-container">
+    <div class="answer" *ngFor="let control of pairsFormArray.controls as FormControl; let i = index">
+      <div class="answer-title">
+        <div class="answer-order"> {{ 'MATCH_NUMBER' | translate: { value: i + 1 } }} </div>
+        <button class="answer-remove-button" mat-button (click)="onRemovePair(i)" color="warn"> {{'REMOVE_MATCH' | translate }} </button>
+      </div>
+      <div class="field-container">
+        <mat-form-field appearance="outline" >
+          <mat-label> {{ 'MATCH_LEFT_PART' | translate }} </mat-label>
+          <input matInput [formControl]="getLeftPartControl(i)">
+        </mat-form-field>
+      </div>
+      <div class="field-container">
+        <mat-form-field appearance="outline" >
+          <mat-label> {{ 'MATCH_RIGHT_PART' | translate }} </mat-label>
+          <input matInput [formControl]="getRightPartControl(i)">
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="answer-add-button" mat-button (click)="onAddPair()" color="primary"> {{'ADD_MATCH' | translate }} </button>
+  </div>
+</div>

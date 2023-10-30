@@ -1,0 +1,78 @@
+@use '@angular/material' as mat;
+
+@mixin app-toolbar-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .app-toolbar {
+    box-shadow: 0px 0px 15px 0px rgba(mat.get-color-from-palette($primary, 500), 0.2);
+
+    .logo {
+      &-icon {
+        color: mat.get-color-from-palette($app-yellow, 900);
+      }
+      &:hover {
+        .logo-text,
+        .logo-icon {
+          color: mat.get-color-from-palette($primary, 300);
+        }
+      }
+    }
+
+    .navigation {
+      &-item {
+        color: mat.get-color-from-palette($app-grey, 900);
+
+        &::before {
+          background-color: mat.get-color-from-palette($primary, 500);
+        }
+
+        &.active-item {
+          color: mat.get-color-from-palette($primary, 500);
+        }
+
+        &:hover {
+          color: mat.get-color-from-palette($primary, 300);
+
+          &::before {
+            background-color: mat.get-color-from-palette($primary, 300);
+          }
+
+          .mat-button-focus-overlay {
+            background-color: transparent;
+          }
+        }
+      }
+    }
+
+    .actions {
+      &-search {
+        .mat-form-field-flex {
+          background-color: transparent;
+        }
+
+        .mat-form-field-underline {
+          opacity: 0;
+        }
+      }
+
+      &-button,
+      &-search {
+        background-color: mat.get-color-from-palette($primary, 50);
+
+        .mat-icon {
+          color: mat.get-color-from-palette($primary, 400);
+        }
+
+        &:hover {
+          .mat-icon {
+            color: mat.get-color-from-palette($primary, 300);
+          }
+        }
+      }
+    }
+
+    .admin-panel-title {
+      color: mat.get-color-from-palette($app-grey, 900);
+    }
+  }
+}

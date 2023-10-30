@@ -1,0 +1,83 @@
+<app-toolbar></app-toolbar>
+<mat-drawer-container class="admin-container" autosize>
+  <mat-drawer #drawer class="admin-sidenav" mode="side" opened="true" [@animationWidth]="drawer.opened ? 'open' : 'close'">
+    <div class="admin-sidenav-item title-item">
+      <mat-icon>menu</mat-icon>
+      <button *ngIf="drawer.opened" mat-button [disableRipple]="true">
+        {{ 'MENU' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'USER_REGISTRATION'}"
+      (click)="onAdminNavigationClick('USER_REGISTRATION')">
+      <mat-icon>person_add</mat-icon>
+      <button *ngIf="drawer.opened" mat-button [disableRipple]="true">
+        {{ 'USER_REGISTRATION' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'USER_EDITING'}"
+      (click)="onAdminNavigationClick('USER_EDITING')">
+      <mat-icon>manage_accounts</mat-icon>
+      <button *ngIf="drawer.opened" mat-button [disableRipple]="true">
+        {{ 'USER_EDITING' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'BOOK_EDITING'}"
+      (click)="onAdminNavigationClick('BOOK_EDITING')">
+      <mat-icon svgIcon="edit-content"></mat-icon>
+      <button *ngIf="drawer.opened" mat-button [disableRipple]="true">
+        {{ 'BOOK_EDITING' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'TASK_ADDING'}"
+      (click)="onAdminNavigationClick('TASK_ADDING')">
+      <mat-icon svgIcon="add-task" class="add-task-icon"></mat-icon>
+      <button *ngIf="drawer.opened"  mat-button [disableRipple]="true">
+        {{ 'TASK_ADDING' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'TASK_EDITING'}"
+      (click)="onAdminNavigationClick('TASK_EDITING')">
+      <mat-icon svgIcon="edit-task"></mat-icon>
+      <button *ngIf="drawer.opened"  mat-button [disableRipple]="true">
+        {{ 'TASK_EDITING' | translate }}
+      </button>
+    </div>
+    <div class="admin-sidenav-item"
+      [ngClass]="{'active-item': (adminActiveType$ | async) === 'USER_RESULTS'}"
+      (click)="onAdminNavigationClick('USER_RESULTS')">
+      <mat-icon>bar_chart</mat-icon>
+      <button *ngIf="drawer.opened"  mat-button [disableRipple]="true">
+        {{ 'USER_RESULTS' | translate }}
+      </button>
+    </div>
+    <div class="spacer"></div>
+    <div class="admin-sidenav-item" (click)="onLogoutClick()">
+      <mat-icon>logout</mat-icon>
+      <button *ngIf="drawer.opened" mat-button [disableRipple]="true">
+        Выйти
+      </button>
+    </div>
+
+    <button mat-icon-button class="admin-sidenav-toggle" (click)="drawer.toggle()">
+      <mat-icon *ngIf="!drawer.opened">arrow_right</mat-icon>
+      <mat-icon *ngIf="drawer.opened">arrow_left</mat-icon>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content class="admin-sidenav-content" [@animationMargin]="drawer.opened ? 'open' : 'close'">
+    <mat-toolbar class="admin-toolbar">
+      <mat-toolbar-row>
+        <div class="admin-title">{{ adminActiveType$ | async | translate }}</div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="admin-content" *ngIf="(adminPortal$ | async) as portal">
+      <ng-container [cdkPortalOutlet]="portal"></ng-container>
+    </div>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
+

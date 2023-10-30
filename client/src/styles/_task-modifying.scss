@@ -1,0 +1,45 @@
+.task-modifying-container {
+  .mat-flat-button {
+    border-radius: 30px;
+  }
+
+  .variant-paginator {
+    position: absolute;
+    top: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+
+    .mat-paginator-container {
+      padding: 0;
+      min-height: auto;
+    }
+
+    .mat-paginator-range-actions {
+      column-gap: 180px;
+    }
+    .mat-paginator-range-label {
+      display: none;
+    }
+  }
+
+  .task-paginator {
+    position: absolute;
+    top: 71px;
+    left: 32px;
+    z-index: 99;
+
+    .mat-paginator-container {
+      padding: 0;
+      min-height: auto;
+    }
+
+    .mat-paginator-range-label {
+      display: none;
+    }
+  }
+
+  .remove-task-button {
+    border-radius: 6px;
+  }
+}

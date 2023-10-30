@@ -1,0 +1,99 @@
+<app-toolbar></app-toolbar>
+<mat-drawer-container class="book-container" autosize>
+  <mat-drawer #drawer class="book-sidenav" mode="side" opened="true" [@animationWidth]="drawer.opened ? 'open' : 'close'">
+    <div class="filter-control-container">
+      <mat-form-field appearance="outline" *ngIf="drawer.opened">
+        <mat-label> {{ 'BOOK_SEARCH_PLACEHOLDER' | translate }} </mat-label>
+        <input matInput [formControl]="searchControl">
+        <mat-icon matSuffix color="primary">search</mat-icon>
+      </mat-form-field>
+    </div>
+      <div class="book-navigation-container">
+        <div *ngFor="let section of fileredBookSections$ | async">
+            <div class="section" *ngIf="section.chapters.length && drawer.opened">
+              <div 
+                  class="section-indicator"
+                  [ngClass]="{
+                    'section-js': chaptersType === 'JAVASCRIPT',
+                    'section-ts': chaptersType === 'TYPESCRIPT',
+                    'section-finished': finishedItemIds.has(section.id)
+                  }"></div>
+              <div class="section-label">{{ section.order + ' ' + section.title}}</div>
+            </div>
+            <div class="chapter" [ngClass]="{'selected-chapter': selectedChapterId === chapter.id}" *ngFor="let chapter of section.chapters">
+                <div 
+                  class="chapter-indicator"
+                  [ngClass]="{
+                    'chapter-js': chaptersType === 'JAVASCRIPT',
+                    'chapter-ts': chaptersType === 'TYPESCRIPT',
+                    'chapter-finished': finishedItemIds.has(chapter.id)
+                  }"></div>
+                <button mat-button *ngIf="drawer.opened" (click)="onChapterSelected(chapter)">
+                  <span class="label">{{ section.order + '.' + chapter.order + ' ' + chapter.title }}</span>
+                </button>
+            </div>
+
+            <div class="exercise" [ngClass]="{'selected-exercise': selectedExerciseId === exercise.id}" *ngFor="let exercise of section.exercises">
+              <div 
+                  class="exercise-indicator"
+                  [ngClass]="{
+                    'exercise-js': chaptersType === 'JAVASCRIPT',
+                    'exercise-ts': chaptersType === 'TYPESCRIPT',
+                    'exercise-finished': finishedItemIds.has(exercise.id)
+                  }"></div>
+                <button mat-button *ngIf="drawer.opened" (click)="onExerciseSelected(exercise)">
+                  <span class="label">{{ exercise.title }}</span>
+                </button>
+            </div>
+        </div>
+      </div>
+    <button mat-icon-button class="book-sidenav-toggle" (click)="drawer.toggle()">
+      <mat-icon *ngIf="!drawer.opened">arrow_right</mat-icon>
+      <mat-icon *ngIf="drawer.opened">arrow_left</mat-icon>
+    </button>
+  </mat-drawer>
+  <mat-drawer-content class="book-sidenav-content" [@animationMargin]="drawer.opened ? 'open' : 'close'">
+    <mat-toolbar class="book-toolbar">
+      <mat-toolbar-row>
+        <div class="book-title" *ngIf="selectedChapter$ | async as chapter">
+          {{ chapter.title }}
+        </div>
+        <div class="book-title" *ngIf="selectedExercise$ | async as exercise">
+          {{ exercise.title }}
+          <div class="exercise-progress">
+            <div 
+              class="progress-item" 
+              *ngFor="let item of (selectedExerciseWithContent$ | async)?.variants[0]?.tasks; let taskIndex = index"
+              [ngClass]="{
+                'exercise-js': chaptersType === 'JAVASCRIPT',
+                'exercise-ts': chaptersType === 'TYPESCRIPT',
+                'task-finished': (currentTaskIndex > taskIndex)
+              }">
+              <div *ngIf="!(currentTaskIndex > taskIndex)" class="progress-item-overlay"></div>
+              <mat-icon>question_mark</mat-icon>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="book-content-container" #bookContent>
+      <div class="book-content-wrapper">
+        <div class="chapter-wrapper" *ngIf="selectedChapterContent$ | async as content">
+          <div  class="book-content-chapter" [innerHTML]="content"></div>
+          <button mat-flat-button color="primary" (click)="onChapterFinished()"> {{ 'NEXT_TAKS_BUTTON' | translate }} </button>
+        </div>
+        <div *ngIf="selectedExerciseWithContent$ | async as exercise">
+          <solve-task [exercise]="exercise" (exerciseFinished)="onExerciseFinished($event)" (taskIndexChanged)="onTaskIndexChanged($event)"></solve-task>
+        </div>
+        <!-- <div *ngIf="!(selectedChapterContent$ | async)" class="empty-content">{{ 'EMPTY_CHAPTER_MESSAGE' | translate }}</div> -->
+      </div>
+      
+
+    </div>
+  </mat-drawer-content>
+
+
+</mat-drawer-container>
+
+<ng-template #emptyChapter>
+</ng-template>

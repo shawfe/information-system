@@ -1,0 +1,13 @@
+@use '@angular/material' as mat;
+
+@mixin mat-tabs-theme($theme) {
+  .mat-tab {
+    &-label {
+      color: mat.get-color-from-palette($app-grey, 900);
+
+      &.mat-tab-label-active {
+        color: $black-87-opacity;
+      }
+    }
+  }
+}

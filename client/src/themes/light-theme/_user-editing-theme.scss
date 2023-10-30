@@ -1,0 +1,60 @@
+@use '@angular/material' as mat;
+
+@mixin user-editing-theme($theme) {
+  .user-editing {
+    &-container {
+      .mat-expansion-panel {
+        .mat-icon-button {
+          &.mat-primary {
+            background-color: mat.get-color-from-palette($app-blue, 50);
+
+            &:hover {
+              background-color: mat.get-color-from-palette($app-blue, 200);
+            }
+          }
+          &.mat-warn {
+            background-color: mat.get-color-from-palette($app-red, 50);
+
+            &:hover {
+              background-color: mat.get-color-from-palette($app-red, 200);
+            }
+          }
+        }
+      }
+
+      .removed-user-row-overlay {
+        background: rgba(mat.get-color-from-palette($app-blue, 50), 0.5);
+        color: mat.get-color-from-palette($app-grey, 900);
+      }
+
+      .remove-button {
+        background-color: mat.get-color-from-palette($app-red, 50);
+
+        &:hover:not([disabled]) {
+          background-color: mat.get-color-from-palette($app-red, 200);
+        }
+
+        .mat-icon {
+          color: mat.get-color-from-palette($app-red, 600);
+        }
+      }
+
+      .revert-button {
+        background-color: mat.get-color-from-palette($app-blue, 400);
+
+        &:hover:not([disabled]) {
+          background-color: mat.get-color-from-palette($app-blue, 300);
+        }
+
+        .mat-icon {
+          color: white;
+        }
+      }
+    }
+    &-table {
+      .mat-header-row {
+        background-color: mat.get-color-from-palette($app-blue, 50);
+      }
+    }
+  }
+}

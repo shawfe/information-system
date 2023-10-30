@@ -1,0 +1,14 @@
+<auth-base customClass="sign-up-finished">
+  <h2 class="mat-title sign-up-finished-title">{{ 'SIGN_UP_FINISHED_TITLE' | translate }}</h2>
+  <h5 class="sign-up-finished-subtitle">
+    {{ 'SIGN_UP_FINISHED_SUBTITLE' | translate }}
+  </h5>
+  <button 
+    class="sign-up-finished-button" 
+    type="button" 
+    mat-flat-button
+    color="primary" 
+    (click)="navigateToSignIn()">
+    {{ 'AUTHENTICATE' | translate }}
+  </button>
+</auth-base>

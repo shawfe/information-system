@@ -1,0 +1,109 @@
+<auth-base customClass="sign-up">
+  <h2 class="mat-title sign-up-title">{{ 'SIGN_UP_TITLE' | translate }}</h2>
+  <h5 class="sign-up-subtitle">
+    {{ 'ALREADY_HAVE_ACCOUNT' | translate }}
+    <a class="link" (click)="navigateToSignIn()">{{ 'SIGN_IN_BUTTON' | translate }}</a>
+  </h5>
+  <form class="sign-up-body" [formGroup]="signUpForm" (ngSubmit)="submit()">
+    <div class="fields-container">
+      <div class="name-fields-container">
+    <mat-form-field class="sign-up-field"  appearance="outline">
+      <mat-label>{{ 'FIRST_NAME' | translate }}</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="firstName"
+        autocomplete="off"
+        name="wisFirstName"
+      />
+      <mat-icon matSuffix color="primary" class="inactive" svgIcon="id-card"></mat-icon>
+      <mat-error *ngIf="signUpForm.get('firstName').hasError('required')">{{ 'NAME_REQUIRED' | translate }}</mat-error>
+    </mat-form-field>
+    <mat-form-field class="sign-up-field"  appearance="outline">
+      <mat-label>{{ 'LAST_NAME' | translate }}</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="lastName"
+        autocomplete="off"
+        name="wisLastName"
+      />
+      <mat-icon matSuffix color="primary" class="inactive" svgIcon="id-card"></mat-icon>
+      <mat-error *ngIf="signUpForm.get('lastName').hasError('required')">
+        {{ 'LASTNAME_REQUIRED' | translate }}
+      </mat-error>
+    </mat-form-field>
+  </div>
+      <mat-form-field class="sign-up-field" appearance="outline">
+        <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="email"
+          autocomplete="off"
+          name="wisEmail"
+        />
+        <mat-icon matSuffix color="primary" class="inactive">mail</mat-icon>
+        <mat-error *ngIf="signUpForm.get('email').hasError('required')">
+          {{ 'EMAIL_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('email').hasError('pattern')">
+          {{ 'EMAIL_PATTERN_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="sign-up-field password-field"  appearance="outline">
+        <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+        <input
+          [type]="hidePasswordStates.password ? 'password' : 'text'"
+          matInput
+          formControlName="password"
+          autocomplete="off"
+          name="wisPassword"
+        />
+        <mat-icon matSuffix color="primary" (click)="passwordShowHide('password')">
+          {{ hidePasswordStates.password ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+        <mat-error *ngIf="signUpForm.get('password').hasError('required')">
+          {{ 'PASSWORD_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('password').hasError('minlength')">
+          {{ 'PASSWORD_MINLENGTH' | translate : { value: minLengthPassword } }}
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('password').hasError('mustMatch')">
+          {{ 'DIFFERENT_PASSWORDS_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="sign-up-field password-field"  appearance="outline">
+        <mat-label>{{ 'REPEAT_PASSWORD' | translate }}</mat-label>
+        <input
+          [type]="hidePasswordStates.confirmPassword ? 'password' : 'text'"
+          matInput
+          formControlName="confirmPassword"
+          autocomplete="off"
+          name="wisConfirmPassword"
+        />
+        <mat-icon matSuffix color="primary" (click)="passwordShowHide('confirmPassword')">
+          {{ hidePasswordStates.confirmPassword ? 'visibility' : 'visibility_off' }}
+        </mat-icon>
+        <mat-error *ngIf="signUpForm.get('confirmPassword').hasError('required')">
+          {{ 'PASSWORD_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="signUpForm.get('confirmPassword').hasError('mustMatch')">
+          {{ 'DIFFERENT_PASSWORDS_ERROR' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="button">
+      <button
+        class="sign-up-button"
+        type="submit"
+        mat-flat-button
+        color="primary"
+        [disabled]="signUpForm.invalid"
+      >
+        {{ 'SIGN_UP_BUTTON' | translate }}
+      </button>
+    </div>
+  </form>
+</auth-base>

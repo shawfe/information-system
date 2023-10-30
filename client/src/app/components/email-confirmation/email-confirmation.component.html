@@ -1,0 +1,14 @@
+<auth-base customClass="email-confirmation">
+  <h2 class="mat-title email-confirmation-title">{{ 'EMAIL_CONFIRMED_TITLE' | translate }}</h2>
+  <h5 class="email-confirmation-subtitle">
+    {{ 'EMAIL_CONFIRMED_MESSAGE' | translate }}
+  </h5>
+  <button 
+    class="email-confirmation-button" 
+    type="button" 
+    mat-flat-button
+    color="primary" 
+    (click)="onNavigateToSignIn()">
+    {{ 'AUTHENTICATE' | translate }}
+  </button>
+</auth-base>

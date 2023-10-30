@@ -1,0 +1,21 @@
+@use '@angular/material' as mat;
+
+@mixin mat-icon-theme($theme) {
+  .mat-primary.mat-icon {
+    &:not(.inactive) {
+      color: mat.get-color-from-palette($app-blue, 400);
+
+    &:hover {
+      color: mat.get-color-from-palette($app-blue, 500);
+    }
+  }
+
+    &.inactive {
+      color: mat.get-color-from-palette($app-blue, 300);
+
+      &:hover {
+        color: mat.get-color-from-palette($app-blue, 300);
+      }
+    }
+  }
+}

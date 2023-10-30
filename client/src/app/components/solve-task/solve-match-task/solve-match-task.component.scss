@@ -1,0 +1,54 @@
+.solve-match-task-container {
+  .task-title {
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .task-subtitle {
+    margin-bottom: 15px;
+  }
+
+  .task-body {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+  }
+
+  .parts-container {
+    display: flex;
+    column-gap: 20px;
+  }
+
+  .left-part-item, .right-part-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border-radius: 8px;
+    flex-grow: 1;
+    
+  }
+
+  .left-part-item {
+    max-width: 35%;
+
+    span {
+      margin-left: auto;
+    }
+  }
+
+  .right-part-item  {
+    max-width: 60%;
+    cursor: move;
+
+    .mat-icon {
+      margin-right: 15px;
+    }
+  }
+
+  .taks-complete-button {
+    margin-top: 24px;
+    padding: 5px 25px;
+    border-radius: 30px;
+  }
+}

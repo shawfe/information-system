@@ -1,0 +1,51 @@
+.profile-data {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  min-width: 600px;
+  max-width: 900px;
+  margin: 24px 5%;
+
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 60px;
+  }
+
+  .avatar {
+    width: 168px;
+    height: 168px;
+    border-radius: 50%;
+  }
+
+  .avatar-placeholder {
+    font-size: 168px;
+  }
+
+  .fields-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding-left: 50px;
+
+    .custom-field {
+      flex-grow: 1;
+
+      &:not(:last-child) {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .actions {
+    padding: 0 60px 20px;
+  }
+
+  &-button {
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 30px;
+  }
+}

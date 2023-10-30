@@ -1,0 +1,39 @@
+@use '@angular/material' as mat;
+
+@mixin content-theme($theme) {
+  .ql-toolbar .ql-picker.ql-font .ql-picker-label[data-value='roboto']::before,
+  .ql-toolbar .ql-picker.ql-font .ql-picker-item[data-value='roboto']::before {
+    content: 'Roboto';
+    font-family: 'Roboto';
+  }
+
+  .ql-toolbar .ql-picker.ql-font .ql-picker-label[data-value='gilroy']::before,
+  .ql-toolbar .ql-picker.ql-font .ql-picker-item[data-value='gilroy']::before {
+    content: 'Gilroy';
+    font-family: 'Gilroy';
+  }
+
+  .ql-font-roboto {
+    font-family: 'Roboto';
+  }
+
+  .ql-font-gilroy {
+    font-family: 'Gilroy';
+  }
+
+  .admin-content .ql-container .ql-editor,
+  .book-content-chapter {
+    blockquote {
+      border: 2px solid mat.get-color-from-palette($app-red, 400);
+    }
+
+    ul li::before {
+      background-color: mat.get-color-from-palette($app-blue, 200);
+    }
+
+    .ql-syntax {
+      color: $black-87-opacity;
+      background-color: mat.get-color-from-palette($app-blue, 50);
+    }
+  }
+}

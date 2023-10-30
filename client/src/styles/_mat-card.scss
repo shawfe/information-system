@@ -1,0 +1,14 @@
+mat-card.mat-card {
+  border-radius: 24px;
+
+  .mat-card-title {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  .mat-card-subtitle {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: pre-wrap;
+  }
+}

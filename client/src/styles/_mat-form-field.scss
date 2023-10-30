@@ -1,0 +1,14 @@
+.mat-form-field {
+  .mat-form-field-outline {
+    border-radius: 10px;
+
+    .mat-form-field-outline-start {
+      border-radius: 10px 0 0 10px;
+      min-width: 10px;
+    }
+
+    .mat-form-field-outline-end {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+}

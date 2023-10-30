@@ -1,0 +1,13 @@
+.pick-task-container { 
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+
+  .mark-right-answer-button {
+    margin-right: 8px;
+  }
+
+  .mark-right-answer-button, .remove-answer-button {
+    border-radius: 6px;
+  }
+}

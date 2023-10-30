@@ -1,0 +1,19 @@
+@use '@angular/material' as mat;
+
+@mixin mat-paginator-theme($theme) {
+  .mat-paginator {
+
+    &-range-actions {
+      
+      .mat-icon-button {
+        background-color: mat.get-color-from-palette($app-blue, 50);
+        color: mat.get-color-from-palette($app-blue, 400);
+
+        &.mat-button-disabled {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+          color: mat.get-color-from-palette($app-grey, 900);
+        }
+      }
+    }
+  }
+}

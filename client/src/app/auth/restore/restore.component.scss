@@ -1,0 +1,30 @@
+.restore {
+  &-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  &-subtitle {
+    margin-bottom: 34px;
+    white-space: pre-wrap;
+  }
+
+  &-field {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  &-input-icon {
+    position: absolute;
+    right: 0;
+    top: 5px;
+  }
+
+  &-button {
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 30px;
+  }
+}
+

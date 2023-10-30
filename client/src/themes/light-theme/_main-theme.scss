@@ -1,0 +1,11 @@
+@use '@angular/material' as mat;
+
+@mixin main-theme($theme) {
+  $primary: map-get($theme, primary);
+  $background-color: rgba(25, 118, 210, 0.10);
+
+  body {
+    color: $black-87-opacity;
+    background-color: mat.get-color-from-palette($primary, 50);
+  }
+}

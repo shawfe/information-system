@@ -1,0 +1,12 @@
+{
+  "en": "English",
+  "ru": "Russian",
+  "DAYS": "Days",
+  "HOURS": "Hours",
+  "MINUTES": "Minutes",
+  "UNITS": "Units",
+  "DURATION": "Duration",
+  "GENERATE_LINK_TITLE": "Generate sign-up link",
+  "GENERATE_LINK_SUBTITLE": "Specify how long the registration link\nfor new users will be valid",
+  "GENERATED_LINK_PLACEHOLDER": "Here will be the generated link"
+}

@@ -1,0 +1,85 @@
+@use '@angular/material' as mat;
+
+@mixin book-editing-theme($theme) {
+  .book-editing {
+    &-container {
+      background-color: #FFFFFF;
+      box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+
+      .field-label {
+        color: mat.get-color-from-palette($app-grey, 900);
+      }
+
+      .book-sections-container-wrapper {
+        border: 1px solid rgba(mat.get-color-from-palette($app-blue, 500), 0.5);
+  
+        .section, .chapter {
+          background-color: mat.get-color-from-palette($app-blue, 50);
+          border: 1px solid mat.get-color-from-palette($app-blue, 300);
+
+          .title .mat-icon {
+            color: mat.get-color-from-palette($app-blue, 200);
+          }
+
+          .remove-button {
+            background-color: mat.get-color-from-palette($app-red, 50);
+
+            &:not(.mat-button-disabled) {
+              &:hover {
+                background-color: mat.get-color-from-palette($app-red, 200);
+              }
+              .mat-icon {
+                color: mat.get-color-from-palette($app-red, 400);
+              }
+            }
+
+            .mat-icon {
+              color: mat.get-color-from-palette($app-grey, 900);
+            }
+          }
+
+          .revert-button {
+            background-color: mat.get-color-from-palette($app-blue, 50);
+
+            &:not(.mat-button-disabled) {
+              &:hover {
+                background-color: mat.get-color-from-palette($app-blue, 200);
+              }
+              .mat-icon {
+                color: mat.get-color-from-palette($app-blue, 400);
+              }
+            }
+
+            .mat-icon {
+              color: mat.get-color-from-palette($app-grey, 900);
+            }
+          }
+
+          .removed-item-overlay {
+            background: rgba(mat.get-color-from-palette($app-grey, 300), 0.5);
+            color: mat.get-color-from-palette($app-grey, 900);
+          }
+        }
+        
+      }
+
+      .choose-field-container {
+        .modify-action {
+          color: #FFFFFF;
+          &:not(.mat-button-disabled) {
+            background-color: mat.get-color-from-palette($app-blue, 400);
+            &:hover {
+              background-color: mat.get-color-from-palette($app-blue, 300);
+            }
+          }
+          background-color: mat.get-color-from-palette($app-blue, 200);
+        }
+      }
+    }
+  }
+
+  .chapter.cdk-drag-preview {
+    background-color: mat.get-color-from-palette($app-blue, 50);
+    border: 1px solid mat.get-color-from-palette($app-blue, 300);
+  }
+}

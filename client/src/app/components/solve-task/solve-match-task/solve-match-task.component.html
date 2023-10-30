@@ -1,0 +1,18 @@
+<div class="solve-match-task-container">
+  <div class="task-title"> {{ 'MATCH_TASK_TITLE' | translate }} </div>
+  <div class="task-subtitle"> {{ 'MATCH_TASK_SUBTITLE' | translate}} </div>
+  <div class="task-body" cdkDropList [cdkDropListData]="rightParts" (cdkDropListDropped)="onDropRightPart($event)">
+    <div *ngFor="let answer of matchTask.answers" class="parts-container">
+      <div class="left-part-item">
+        <span> {{ answer.leftPart }} </span>
+      </div>
+      <div class="right-part-item" cdkDrag>
+        <mat-icon color="primary">drag_indicator</mat-icon>
+        <span> {{ answer.rightPart }} </span>
+      </div>
+    </div>
+  </div>
+    <button mat-flat-button class="taks-complete-button" [disabled]="disableCompleteButton" color="primary" (click)="onTaskComplete()">
+      {{ (isLastTask ? 'FIHISH_EXERCISE' : 'NEXT_TASK') | translate }}
+    </button>
+</div>

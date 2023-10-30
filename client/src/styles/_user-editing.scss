@@ -1,0 +1,58 @@
+.user-editing {
+  &-container {
+    .mat-expansion-panel {
+      margin-bottom: 16px;
+
+      .mat-icon-button {
+        border-radius: 6px;
+      }
+    }
+
+    .create-group-container {
+      flex-grow: 1;
+      max-width: 550px;
+      padding-right: 36px;
+      padding-left: 36px;
+      margin-bottom: 24px;
+
+      .mat-form-field {
+        width: 100%;
+      }
+
+      .save-group-button {
+        width: 100%;
+        border-radius: 30px;
+      }
+
+      .mat-card-title {
+        margin-bottom: 20px;
+        font-size: 18px;
+      }
+
+      .mat-card-content {
+        margin-bottom: 0;
+      }
+
+      .mat-card-actions.actions {
+        margin-bottom: 0;
+      }
+    }
+
+    .mat-column-group {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  &-table {
+    .mat-header-row {
+      .mat-header-cell:first-child {
+        border-top-left-radius: 18px;
+      }
+      .mat-header-cell:last-child {
+        border-top-right-radius: 18px;
+      }
+    }
+  }
+}

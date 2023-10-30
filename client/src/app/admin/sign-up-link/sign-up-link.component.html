@@ -1,0 +1,44 @@
+<form [formGroup]="generateLinkForm" (ngSubmit)="onGenerateLink()">
+  <mat-card class="sign-up-link-container">
+    <mat-card-title>{{ 'GENERATE_LINK_TITLE' | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ 'GENERATE_LINK_SUBTITLE' | translate }}</mat-card-subtitle>
+
+    <mat-card-content>
+      <div class="link-expiration-container">
+          <mat-form-field class="link-expiration-field" color="primary" appearance="outline">
+            <mat-label>{{ 'DURATION' | translate }}</mat-label>
+            <mat-select formControlName="durationControl">
+              <mat-option *ngFor="let rangeItem of durationRange$ | async" [value]="rangeItem">
+                {{ rangeItem }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <mat-form-field class="link-expiration-field" appearance="outline" #selectUnits>
+          <mat-label>{{ 'UNITS' | translate }}</mat-label>
+          <mat-select formControlName="timeUnitsControl"
+            (selectionChange)="onTimeUnitsChange($event.value)">
+            <mat-option *ngFor="let timeUnit of timeUnits" [value]="timeUnit" >
+              {{ timeUnit | translate }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+  
+      <button mat-raised-button 
+        color="primary"
+        class="sign-up-link-button" 
+        type="submit">
+        Сгенерировать ссылку
+      </button>
+
+      <div class="separator"></div>
+
+      <mat-form-field class="sign-up-link-field" [ngClass]="{ 'link-genetared': !(isShowLabel$ | async) }" (click)="onLinkClick()">
+        <mat-label *ngIf="isShowLabel$ | async">Здесь будет сгенерирована ссылка</mat-label>
+        <input matInput  formControlName="linkControl" class="sign-up-link-input">
+        <mat-icon matSuffix class="icon-copy-link inactive" color="primary">content_copy</mat-icon>
+      </mat-form-field>
+    </mat-card-content>
+    
+  </mat-card>
+</form>

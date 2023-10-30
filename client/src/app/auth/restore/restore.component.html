@@ -1,0 +1,32 @@
+<auth-base customClass="restore">
+  <h2 class="mat-title restore-title">{{ 'RESTORE_TITLE' | translate }}</h2>
+  <h5 class="restore-subtitle">
+    {{ 'RESTORE_SUBTITLE' | translate }}
+  </h5>
+  <mat-form-field class="restore-field" appearance="outline">
+    <mat-label>{{ 'EMAIL' | translate }}</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="emailControl"
+      autocomplete="off"
+      name="wisEmail"
+    />
+    <mat-icon matSuffix color="primary" class="inactive">mail</mat-icon>
+    <mat-error *ngIf="emailControl.hasError('required')">
+      {{ 'EMAIL_REQUIRED' | translate }}
+    </mat-error>
+    <mat-error *ngIf="emailControl.hasError('pattern')">
+      {{ 'EMAIL_PATTERN_ERROR' | translate }}
+    </mat-error>
+  </mat-form-field>
+  <button 
+    class="restore-button" 
+    type="button" 
+    mat-flat-button
+    color="primary" 
+    [disabled]="!emailControl.valid"
+    (click)="restorePassword()">
+    {{ 'RESTORE_BUTTON' | translate }}
+  </button>
+</auth-base>

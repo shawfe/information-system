@@ -1,0 +1,12 @@
+@mixin icon-size($size) {
+  font-size: $size;
+  height: $size;
+  width: $size;
+  line-height: $size;
+}
+
+@mixin button-size($size) {
+  height: $size;
+  width: $size;
+  line-height: $size;
+}

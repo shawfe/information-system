@@ -1,0 +1,72 @@
+<div class="user-registration-container">
+  <sign-up-link></sign-up-link>
+
+  <mat-card class="user-registration-card">
+    <mat-card-title>{{ 'ACCEPT_USER_REGISTRATION_TITLE' | translate }}</mat-card-title>
+    <mat-card-subtitle>{{ 'ACCEPT_USER_REGISTRATION_SUBTITLE' | translate }}</mat-card-subtitle>
+    <mat-card-content [hidden]="isLoadingTableData$ | async">
+      <table
+          *ngIf="(users$ | async).length; else emptyTable"
+          [dataSource]="dataSource" 
+          mat-table
+          class="user-registration-table">
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef> {{ 'FIRST_NAME' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> {{ user.firstName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef> {{ 'LAST_NAME' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> {{ user.lastName }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="group">
+          <th mat-header-cell *matHeaderCellDef> {{ 'GROUP' | translate }} </th>
+          <td mat-cell *matCellDef="let user"> 
+            <mat-form-field appearance="outline">
+              <mat-label> {{ 'GROUP' | translate }} </mat-label>
+              <mat-select
+                (selectionChange)="onUserGroupChange($event.value, user)"
+                [disabled]="!(groups$ | async).length">
+                <mat-option *ngFor="let group of groups$ | async" [value]="group">
+                  {{ group.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accept">
+          <th mat-header-cell *matHeaderCellDef> {{ 'ACCEPT' | translate }} </th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button
+              class="accept-button"
+              [disabled]="!userIdsWithGroups.has(user.id)"
+              (click)="onAcceptUser(user.id)">
+              <mat-icon svgIcon="add-user"></mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="decline">
+          <th mat-header-cell *matHeaderCellDef> {{ 'DECLINE' | translate }} </th>
+          <td mat-cell *matCellDef="let user">
+            <button mat-icon-button class="decline-button" (click)="onDeclineUser(user.id)">
+              <mat-icon svgIcon="decline-user"></mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [ngClass]="{ 'hidden-element': !(users$ | async).length }" [hidePageSize]="true" [pageSize]="6"></mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<ng-template #emptyTable> 
+  <div class="empty-table-message">
+    {{ 'EMPTY_ACCEPT_TABLE_MESSAGE' | translate }}
+  </div>
+</ng-template>

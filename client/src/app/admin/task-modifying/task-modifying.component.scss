@@ -1,0 +1,110 @@
+.task-modifying-container {
+  position: relative;
+  display: flex;
+  column-gap: 20px;
+  margin: 24px 5%;
+
+  .options-container-wrapper {
+    flex-grow: 1;
+    max-width: 700px;
+  }
+
+  .options-container {
+    display: flex;
+    flex-direction: column;
+    padding: 24px 36px;
+    border-radius: 24px;
+
+    .apply-rename-icon {
+      cursor: pointer;
+    }
+
+    .add-button {
+      margin-top: 10px;
+    }
+  }
+
+  .exercise-container-wrapper {
+    flex-grow: 1;
+    max-width: 750px;
+  }
+
+  .exercise-container {
+    position: relative;
+    padding: 24px 36px;
+    border-radius: 24px;
+  }
+
+  .remove-variant-button {
+    position: absolute;
+    top: -2px;
+    right: 0;
+  }
+
+  .exercise-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .card-title {
+      margin-top: 5px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .card-content {
+      padding: 25px 32px;
+      border-radius: 24px;
+    }
+
+    .task-title-container {
+      position: relative;
+    }
+
+    .remove-task-button {
+      position: absolute;
+      top: -10px;
+      right: 0;
+    }
+
+    .task-title {
+      font-size: 18px;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .add-task-button {
+      margin-top: 16px;
+    }
+  }
+
+  .field-container {
+    display: flex;
+    flex-direction: column;
+
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+
+  .field-label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .hidden-element {
+    height: 0;
+    opacity: 0;
+  }
+
+  .save-changes-button {
+    position: absolute;
+    top: -74px;
+    right: 0;
+    padding: 0 40px;
+    border-radius: 40px;
+    z-index: 999;
+  }
+}

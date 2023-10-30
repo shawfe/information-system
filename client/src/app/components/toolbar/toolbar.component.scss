@@ -1,0 +1,87 @@
+.app-toolbar {
+  .first-row {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &-icon {
+      margin-right: 10px;
+    }
+
+    &-text {
+      width: 220px;
+      height: 52px;
+      line-height: 52px;
+    }
+  }
+
+  .navigation {
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    &-item {
+      position: relative;
+      align-self: stretch;
+      font-size: 17px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        border-radius: 0 0 10px 10px;
+        opacity: 0;
+      }
+
+      &:hover,
+      &.active-item {
+        &::before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    max-width: 40%;
+
+    &-button {
+      border-radius: 8px;
+
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
+
+    &-search {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      min-width: 180px;
+      margin-right: 20px;
+      border-radius: 8px;
+
+      input {
+        width: calc(100% - 24px);
+      }
+
+      &-icon {
+        position: absolute;
+        right: 0;
+        top: -4px;
+      }
+    }
+  }
+}

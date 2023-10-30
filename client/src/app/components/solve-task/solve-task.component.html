@@ -1,0 +1,25 @@
+<div class="solve-task-container">
+  <div class="solve-task" *ngFor="let task of tasks$ | async">
+    <solve-pick-task
+      *ngIf="isPickTask(task)"
+      [initialData]="getPickTaskData()"
+      [isLastTask]="isLastTask()"
+      (taskFinished)="onTaskFinished($event)">
+    </solve-pick-task>
+    <solve-match-task
+      *ngIf="isMatchTask(task)"
+      [initialData]="getMatchTaskData()"
+      [isLastTask]="isLastTask()"
+      (taskFinished)="onTaskFinished($event)">
+    </solve-match-task>
+  </div>
+
+  <mat-paginator 
+    [hidePageSize]="true"
+    [pageSize]="1"
+    class="solve-task-paginator"
+    [ngClass]="{ 'hidden-element': !(tasks$ | async).length }"
+    #taskPaginator
+    [disabled]="true">
+  </mat-paginator>
+</div>

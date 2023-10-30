@@ -1,0 +1,44 @@
+@use '@angular/material' as mat;
+
+@mixin task-modifying-theme($theme) {
+  .task-modifying-container {
+
+    .field-label {
+      color: mat.get-color-from-palette($app-grey, 900);
+    }
+
+    .options-container {
+      box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+      background-color: #FFFFFF;
+
+      .apply-rename-icon {
+        &:hover {
+          color: mat.get-color-from-palette($app-blue, 200);
+        }
+      }
+    }
+
+    .exercise-container {
+      box-shadow: 0px 0px 4px 0px rgba(mat.get-color-from-palette($app-blue, 500), 0.2);
+      background-color: #FFFFFF;
+
+      .variant-paginator, .task-paginator {
+        background-color: transparent;
+      }
+
+      .exercise-card {
+        .card-content {
+          border: 1px solid mat.get-color-from-palette($app-blue, 200);
+        }
+      }
+    }
+
+    .remove-task-button {
+      background-color: mat.get-color-from-palette($app-red, 50);
+
+      &:hover {
+        background-color: mat.get-color-from-palette($app-red, 100);
+      }
+    }
+  }
+}

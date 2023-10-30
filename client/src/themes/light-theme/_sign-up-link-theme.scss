@@ -1,0 +1,26 @@
+@use '@angular/material' as mat;
+
+@mixin sign-up-link-theme($theme) {
+  $primary: map-get($theme, primary);
+
+  .sign-up-link-container {
+    .sign-up-link-field {
+      border: 1px solid mat.get-color-from-palette($primary, 300);
+      background-color: mat.get-color-from-palette($primary, 50);
+    }
+
+    .link-genetared {
+      &.sign-up-link-field:hover {
+        background-color: mat.get-color-from-palette($app-green, 100);
+      }
+
+      .icon-copy-link {
+        color: mat.get-color-from-palette($app-green, 600);
+      }
+    }
+
+    .separator  {
+      background-color: mat.get-color-from-palette($primary, 50);
+    }
+  }
+}

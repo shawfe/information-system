@@ -1,0 +1,48 @@
+<mat-card class="profile-data">
+  <mat-card-content class="content">
+    <!-- <img class="avatar"> -->
+    <mat-icon color="primary" class="avatar avatar-placeholder">account_circle</mat-icon>
+    <div class="fields-container">
+      <mat-form-field appearance="outline">
+        <mat-label> {{ 'FIRST_NAME' | translate }} </mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="firstnameControl"
+        />
+        <mat-icon color="primary" matSuffix  class="inactive">assignment_ind</mat-icon>
+        <mat-error *ngIf="firstnameControl.hasError('required')">
+          {{ 'NAME_REQUIRED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="firstnameControl.hasError('notChanged')">
+          {{ 'NAME_NOT_CHANGED' | translate }}
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label> {{ 'LAST_NAME' | translate }} </mat-label>
+        <input
+          type="text"
+          matInput
+          [formControl]="lastnameControl"
+        />
+        <mat-icon color="primary" matSuffix class="inactive">assignment_ind</mat-icon>
+        <mat-error *ngIf="lastnameControl.hasError('required')">
+          {{ 'LASTNAME_NOT_CHANGED' | translate }}
+        </mat-error>
+        <mat-error *ngIf="lastnameControl.hasError('notChanged')">
+          {{ 'LASTNAME_NOT_CHANGED' | translate }}
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions class="actions">
+    <button
+      mat-flat-button
+      color="primary"
+      class="profile-data-button"
+      (click)="onSave()"
+      [disabled]="firstnameControl.invalid || lastnameControl.invalid">
+        {{ 'SAVE_CHANGES' | translate }}
+      </button>
+  </mat-card-actions>
+</mat-card>
