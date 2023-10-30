@@ -1,6 +1,6 @@
 # Information System for Learning JavaScript and TypeScript
 
-This repository contains the code and resources for my Master's thesis project, an Information System aimed at facilitating the learning process of JavaScript and TypeScript for students of the Department of Graphic Information Systems. This project was carried out over a span of 3 weeks.
+This repository contains the code and resources for my Master's thesis project, an Information System aimed at facilitating the learning process of JavaScript and TypeScript for students of the Department of Graphic Information Systems. This project was carried out for 3 weeks.
 
 ## Table of Contents
 
@@ -51,7 +51,9 @@ The target audience of this system includes students pursuing information techno
 
 ## Usage Scenarios
 
-Usage scenarios vary depending on the user type—student or instructor. For students, key usage scenarios are:
+Usage scenarios vary depending on the user type - student or instructor.
+
+For students, key usage scenarios are:
 - Registration and authentication,
 - Going through lecture material,
 - Completing practical exercises,
@@ -81,7 +83,7 @@ The target information system should comprise modules such as:
 - Database: MongoDB
 - UI kit: Angular Material UI
 - CMS: Strapi
-- Other Packages: ngx-translate, Ace Editor, Quill Editor, and a service for code execution (name to be recalled).
+- Other Packages: ngx-translate, Ace Editor, Quill Editor, and a service for code execution.
 
 ## Installation and Usage
 
